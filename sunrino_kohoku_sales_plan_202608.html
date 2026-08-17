@@ -1,0 +1,1520 @@
+<title>サンリーノ港北 8戸完売作戦</title>
+
+<style>
+  :root {
+    --paper:      #F3F5F4;
+    --surface:    #FFFFFF;
+    --surface-2:  #EAEEEC;
+    --ink:        #161B1A;
+    --slate:      #5B6763;
+    --rule:       #D8DCDA;
+    --rule-firm:  #B4BCB8;
+    --seal:       #B8352C;
+    --seal-soft:  #F0DEDB;
+    --go:         #2E6B4F;
+    --go-soft:    #DDEAE2;
+    --warn:       #8A6A18;
+    --warn-soft:  #F2E8CE;
+
+    --display: "Hiragino Mincho ProN", "Yu Mincho", YuMincho, "Noto Serif JP", "Songti SC", serif;
+    --body: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", YuGothic, "Noto Sans JP", Meiryo, system-ui, sans-serif;
+    --data: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+    --measure: 34rem;
+    --wide: 60rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:      #121615;
+      --surface:    #1A1F1E;
+      --surface-2:  #232928;
+      --ink:        #E4E8E6;
+      --slate:      #99A5A1;
+      --rule:       #2C3331;
+      --rule-firm:  #414A47;
+      --seal:       #E4756A;
+      --seal-soft:  #3A2320;
+      --go:         #6FBE95;
+      --go-soft:    #1E2F27;
+      --warn:       #D2AC5A;
+      --warn-soft:  #2E2718;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:      #121615;
+    --surface:    #1A1F1E;
+    --surface-2:  #232928;
+    --ink:        #E4E8E6;
+    --slate:      #99A5A1;
+    --rule:       #2C3331;
+    --rule-firm:  #414A47;
+    --seal:       #E4756A;
+    --seal-soft:  #3A2320;
+    --go:         #6FBE95;
+    --go-soft:    #1E2F27;
+    --warn:       #D2AC5A;
+    --warn-soft:  #2E2718;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 15px;
+    line-height: 1.85;
+    margin: 0;
+    padding: 0 1.25rem 6rem;
+    -webkit-font-smoothing: antialiased;
+    text-size-adjust: 100%;
+  }
+
+  .wrap {
+    max-width: var(--wide);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  .prose { max-width: var(--measure); }
+
+  /* ---- masthead ---- */
+
+  .masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    padding: 3.5rem 0 2rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .kicker {
+    font-family: var(--data);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--seal);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(2rem, 5.5vw, 3.1rem);
+    line-height: 1.24;
+    letter-spacing: 0.02em;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    max-width: var(--measure);
+    color: var(--slate);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .factbar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 0.8rem;
+  }
+  .fact { background: var(--surface); padding: 0.75rem 0.9rem; }
+  .fact dt {
+    font-family: var(--data);
+    font-size: 0.63rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin: 0 0 0.25rem;
+  }
+  .fact dd {
+    margin: 0;
+    font-family: var(--data);
+    font-size: 1.15rem;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.3;
+  }
+  .fact dd small { font-size: 0.72rem; color: var(--slate); font-family: var(--body); }
+
+  /* ---- nav ---- */
+
+  nav.toc {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    padding: 0.6rem 0;
+    margin: -1.5rem 0 -1.5rem;
+  }
+  nav.toc ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 1.1rem;
+    margin: 0;
+    padding: 0;
+    font-family: var(--data);
+    font-size: 0.72rem;
+  }
+  nav.toc a { color: var(--slate); text-decoration: none; border-bottom: 1px solid transparent; }
+  nav.toc a:hover, nav.toc a:focus-visible { color: var(--seal); border-bottom-color: var(--seal); }
+
+  /* ---- sections ---- */
+
+  section { display: flex; flex-direction: column; gap: 1.4rem; scroll-margin-top: 3.5rem; }
+
+  .sec-head { display: flex; flex-direction: column; gap: 0.35rem; border-top: 1px solid var(--rule-firm); padding-top: 1.1rem; }
+  .sec-num {
+    font-family: var(--data);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    color: var(--seal);
+    text-transform: uppercase;
+  }
+  h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.4rem, 3.2vw, 1.95rem);
+    line-height: 1.35;
+    margin: 0;
+    letter-spacing: 0.02em;
+    text-wrap: balance;
+  }
+  h3 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.12rem;
+    margin: 0.6rem 0 0;
+    letter-spacing: 0.02em;
+  }
+  h4 {
+    font-family: var(--body);
+    font-weight: 700;
+    font-size: 0.83rem;
+    letter-spacing: 0.06em;
+    margin: 0;
+    color: var(--slate);
+  }
+  p { margin: 0; }
+  .prose p + p { margin-top: 0.9rem; }
+
+  ul, ol.plain { padding-left: 1.15rem; margin: 0; }
+  li { margin-bottom: 0.35rem; }
+  li:last-child { margin-bottom: 0; }
+
+  strong { font-weight: 700; }
+  .num { font-family: var(--data); font-variant-numeric: tabular-nums; }
+  .seal { color: var(--seal); }
+
+  /* ---- tables ---- */
+
+  .tablewrap { overflow-x: auto; border: 1px solid var(--rule-firm); background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; min-width: 40rem; font-size: 0.82rem; }
+  caption {
+    caption-side: top;
+    text-align: left;
+    font-family: var(--data);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate);
+    padding: 0.7rem 0.85rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  th, td { padding: 0.5rem 0.85rem; text-align: left; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  thead th {
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    color: var(--slate);
+    font-weight: 700;
+    border-bottom: 1px solid var(--rule-firm);
+    white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.n, th.n { text-align: right; font-family: var(--data); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tfoot td { border-top: 1px solid var(--rule-firm); font-weight: 700; background: var(--surface-2); }
+
+  .rank {
+    display: inline-block;
+    font-family: var(--data);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.05rem 0.4rem;
+    border: 1px solid currentColor;
+    line-height: 1.5;
+  }
+  .r-a { color: var(--go); background: var(--go-soft); }
+  .r-b { color: var(--warn); background: var(--warn-soft); }
+  .r-c { color: var(--seal); background: var(--seal-soft); }
+
+  /* ---- callouts ---- */
+
+  .note {
+    border-left: 3px solid var(--seal);
+    background: var(--surface);
+    padding: 0.9rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: var(--wide);
+  }
+  .note.ok { border-left-color: var(--go); }
+  .note.warn { border-left-color: var(--warn); }
+  .note h4 { color: var(--seal); }
+  .note.ok h4 { color: var(--go); }
+  .note.warn h4 { color: var(--warn); }
+  .note p, .note ul { font-size: 0.87rem; }
+
+  /* ---- day rail ---- */
+
+  .week { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--rule-firm); background: var(--surface); }
+  .week-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.3rem 0.9rem;
+    padding: 0.8rem 1rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .week-head .wk { font-family: var(--data); font-size: 0.7rem; letter-spacing: 0.14em; }
+  .week-head .wt { font-family: var(--display); font-size: 1.02rem; font-weight: 600; }
+  .week-head .wg { font-size: 0.75rem; opacity: 0.72; margin-left: auto; font-family: var(--data); }
+
+  .day { display: grid; grid-template-columns: 6.5rem 1fr; border-top: 1px solid var(--rule); }
+  .day:first-of-type { border-top: none; }
+  .day > .d-when {
+    padding: 0.85rem 0.7rem 0.85rem 1rem;
+    border-right: 1px solid var(--rule);
+    background: var(--surface-2);
+  }
+  .d-when .dd { font-family: var(--data); font-size: 0.95rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .d-when .dw { font-family: var(--data); font-size: 0.67rem; color: var(--slate); display: block; }
+  .d-when .tag {
+    display: inline-block;
+    margin-top: 0.3rem;
+    font-family: var(--data);
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    padding: 0.05rem 0.3rem;
+    border: 1px solid currentColor;
+  }
+  .tag.hol { color: var(--warn); }
+  .tag.key { color: var(--seal); }
+
+  .d-body { padding: 0.85rem 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .d-title { font-weight: 700; font-size: 0.92rem; }
+  .d-body ul { font-size: 0.85rem; padding-left: 1.05rem; }
+  .slot {
+    display: grid;
+    grid-template-columns: 4.6rem 1fr;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    align-items: baseline;
+  }
+  .slot > span:first-child {
+    font-family: var(--data);
+    font-size: 0.72rem;
+    color: var(--slate);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---- script blocks ---- */
+
+  .script { border: 1px solid var(--rule-firm); background: var(--surface); display: flex; flex-direction: column; }
+  .script-head {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--rule-firm);
+    background: var(--surface-2);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.9rem;
+    align-items: baseline;
+  }
+  .script-head .st { font-family: var(--display); font-weight: 600; font-size: 1.02rem; }
+  .script-head .sm { font-family: var(--data); font-size: 0.7rem; color: var(--slate); margin-left: auto; }
+  .script-body { padding: 1rem; display: flex; flex-direction: column; gap: 0.9rem; }
+
+  .line { display: grid; grid-template-columns: 4.2rem 1fr; gap: 0.7rem; align-items: start; }
+  .line > .who {
+    font-family: var(--data);
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    color: var(--slate);
+    padding-top: 0.25rem;
+    border-right: 1px solid var(--rule);
+    padding-right: 0.5rem;
+    text-align: right;
+  }
+  .line .say {
+    font-size: 0.89rem;
+    line-height: 1.9;
+  }
+  .line.me .say { border-left: 2px solid var(--seal); padding-left: 0.7rem; }
+  .line.them .say { color: var(--slate); font-style: normal; }
+
+  .rebuts { border-top: 1px dashed var(--rule-firm); padding-top: 0.8rem; display: flex; flex-direction: column; gap: 0.65rem; }
+  .rebut { font-size: 0.85rem; }
+  .rebut b { color: var(--seal); font-weight: 700; }
+
+  /* ---- funnel ---- */
+
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+  .card {
+    border: 1px solid var(--rule-firm);
+    background: var(--surface);
+    padding: 0.95rem 1.05rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .card .ct { font-family: var(--display); font-weight: 600; font-size: 1rem; }
+  .card ul { font-size: 0.85rem; }
+  .card p { font-size: 0.85rem; }
+
+  .kill { border-left: 3px solid var(--seal); }
+  .keep { border-left: 3px solid var(--go); }
+
+  hr.rule { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+  a { color: var(--seal); }
+  :focus-visible { outline: 2px solid var(--seal); outline-offset: 2px; }
+
+  @media (max-width: 34rem) {
+    .day { grid-template-columns: 1fr; }
+    .day > .d-when { border-right: none; border-bottom: 1px solid var(--rule); display: flex; align-items: baseline; gap: 0.5rem; }
+    .d-when .dw { display: inline; }
+    .line { grid-template-columns: 1fr; }
+    .line > .who { border-right: none; text-align: left; padding-right: 0; }
+    .slot { grid-template-columns: 1fr; gap: 0.1rem; }
+  }
+
+  @media print {
+    nav.toc { display: none; }
+    body { background: #fff; color: #000; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">
+      <span>販売作戦書</span>
+      <span>2026年8月</span>
+      <span>担当 中山</span>
+    </div>
+    <h1>サンリーノ港北センター北<br>1・2F 区分8戸 完売作戦</h1>
+    <p class="standfirst">
+      横浜市都筑区中川中央1-39-29／センター北駅 徒歩5分／RC造1997年築（新耐震）・2026年大規模改修済／全戸テナント入居中のオーナーチェンジ。
+      見込客ゼロからの逆算設計。
+    </p>
+    <dl class="factbar">
+      <div class="fact"><dt>一括販売価格</dt><dd>6億991万<small>円・税込</small></dd></div>
+      <div class="fact"><dt>交渉最終ライン</dt><dd>5億9,000万<small>円</small></dd></div>
+      <div class="fact"><dt>想定NOI</dt><dd>4.87<small>％・税別</small></dd></div>
+      <div class="fact"><dt>区画数</dt><dd>8<small>戸／延743.63㎡</small></dd></div>
+      <div class="fact"><dt>実働営業日</dt><dd>19<small>日（8月全体）</small></dd></div>
+    </dl>
+  </header>
+
+  <nav class="toc" aria-label="目次">
+    <ol>
+      <li><a href="#s0">前提の検算</a></li>
+      <li><a href="#s1">1 週次プラン</a></li>
+      <li><a href="#s2">2 転換率と8戸シナリオ</a></li>
+      <li><a href="#s3">3 捨てるもの／集中</a></li>
+      <li><a href="#s4">4 トークスクリプト</a></li>
+      <li><a href="#s5">5 問合せ対応フロー</a></li>
+      <li><a href="#s6">6 残りわずかの演出</a></li>
+      <li><a href="#s7">7 プランB</a></li>
+    </ol>
+  </nav>
+
+  <!-- ============ 0 ============ -->
+  <section id="s0">
+    <div class="sec-head">
+      <span class="sec-num">Foundation</span>
+      <h2>作戦の土台：数字を割ってから動く</h2>
+    </div>
+
+    <div class="prose">
+      <p>
+        7月のDM494社・反響ゼロは、チャネル選択の失敗ではなく<strong>売り物の単位</strong>の失敗です。
+        一括6億991万円・現況NOI 3.57％という商品は、買える人がほぼいません。3.57％で6億を出す投資家は日本にほとんどおらず、
+        出せる規模の法人は制約条件どおり門前払いです。<span class="seal">母集団がゼロに近いものに、いくら書面を撒いても反響はゼロになります。</span>
+      </p>
+      <p>
+        一方、区画別に割ると <span class="num">4,150万円〜1億2,467万円</span>、想定NOI <span class="num">4.56〜5.61％</span>。
+        これは個人富裕層・地元法人・医療法人・そして<strong>今そこに入っているテナント自身</strong>の射程内です。
+        「全8戸契約完了」という目標は、そもそもバラ売りを前提にした目標です。作戦もそこから組みます。
+      </p>
+    </div>
+
+    <h3>区画別割付価格は、既に与件の中にある</h3>
+    <div class="prose">
+      <p>
+        区画別の想定NOI率と査定賃料から、割付価格が逆算できます。式は
+        <span class="num">査定賃料年額（税別）× 94％ ÷ NOI率</span>。
+        この式で8区画を逆算して合計すると <span class="num">6億0,989万円</span>、一括価格 <span class="num">6億0,991万円</span> と
+        <strong>差はわずか2万円</strong>で一致します。偶然ではありません。区画別価格は既に決まっており、それを取り出しただけです。
+      </p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>区画別 割付価格（逆算値）と賃料ギャップ</caption>
+        <thead>
+          <tr>
+            <th>号室</th><th>テナント業種</th><th class="n">面積㎡</th><th class="n">割付価格</th>
+            <th class="n">現況賃料</th><th class="n">査定賃料</th><th class="n">ギャップ</th><th class="n">想定NOI</th><th>自用取得<br>確度</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>101</td><td>美容院</td><td class="n">136.40</td><td class="n">1億2,467万</td><td class="n">444,400</td><td class="n">554,400</td><td class="n">+24.8%</td><td class="n">4.56%</td><td><span class="rank r-c">C−</span></td></tr>
+          <tr><td>102</td><td>障がい者サービス</td><td class="n">59.81</td><td class="n">4,646万</td><td class="n">159,500</td><td class="n">244,200</td><td class="n">+53.1%</td><td class="n">5.39%</td><td><span class="rank r-a">A</span></td></tr>
+          <tr><td>103</td><td>理容室</td><td class="n">46.40</td><td class="n">4,150万</td><td class="n">159,104</td><td class="n">191,400</td><td class="n">+20.3%</td><td class="n">4.73%</td><td><span class="rank r-b">B</span></td></tr>
+          <tr><td>105</td><td>電気通信</td><td class="n">68.96</td><td class="n">5,785万</td><td class="n">218,900</td><td class="n">284,900</td><td class="n">+30.1%</td><td class="n">5.05%</td><td><span class="rank r-b">B+</span></td></tr>
+          <tr><td>201+202</td><td>塾（2戸一）</td><td class="n">132.00</td><td class="n">9,548万</td><td class="n">386,148</td><td class="n">521,400</td><td class="n">+35.0%</td><td class="n">5.60%</td><td><span class="rank r-b">B+</span></td></tr>
+          <tr><td>203</td><td>駐車場メンテ</td><td class="n">70.95</td><td class="n">6,308万</td><td class="n">235,400</td><td class="n">280,500</td><td class="n">+19.2%</td><td class="n">4.56%</td><td><span class="rank r-c">C</span></td></tr>
+          <tr><td>205+206</td><td>児童発達支援教室（2戸一）</td><td class="n">122.80</td><td class="n">8,847万</td><td class="n">328,900</td><td class="n">484,000</td><td class="n">+47.2%</td><td class="n">5.61%</td><td><span class="rank r-a">A</span></td></tr>
+          <tr><td>207</td><td>内科クリニック</td><td class="n">106.31</td><td class="n">9,238万</td><td class="n">339,680</td><td class="n">418,000</td><td class="n">+23.1%</td><td class="n">4.64%</td><td><span class="rank r-a">A</span></td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td colspan="2">合計</td><td class="n">743.63</td><td class="n">6億0,989万</td><td class="n">2,272,032</td><td class="n">2,978,800</td><td class="n">+31.1%</td><td class="n">—</td><td>—</td></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="note warn">
+      <h4>この価格表は「推定」です。使う前に売主承認を取ること</h4>
+      <p>
+        上記は与件のNOI率からの逆算値であり、サンヨーホームズの正式な区画別価格ではありません。
+        <strong>8月3日の最初の1本目の電話で、区分バラ売りの可否と区画別価格の正式承認を取ってください。</strong>
+        承認が出るまで、この数字を客に提示してはいけません。承認が出なければ作戦全体が成立しないため、これが最優先の1手です。
+      </p>
+      <p>
+        あわせて、全体の想定NOI 4.87％を同じ式で検算すると 5.01％、現況NOI 3.57％は 3.82％となり、いずれも0.1〜0.25ポイント合いません。
+        全体NOIは実際の経費実績、区画別NOIは経費率6％の簡便法を使っている可能性があります。
+        <strong>投資家は必ずここを突きます。</strong>算定根拠を先に押さえておかないと、商談の途中で信用を落とします。
+      </p>
+    </div>
+
+    <h3>最大の武器：全8区画で「返済額 &lt; 査定賃料」が成立する</h3>
+    <div class="prose">
+      <p>
+        現況賃料は査定賃料より平均31％低く、102号室に至っては53％低い。
+        つまり<strong>今のテナントは全員、オーナーが変われば賃料是正の対象になる立場</strong>にいます。これが自用取得を提案する根拠です。
+      </p>
+      <p>
+        自己資金30％・借入20年・年2.5％・元利均等で試算すると、8区画すべてで
+        <strong>月々の返済額が査定賃料（税別）を下回ります</strong>。「同じ金額を払うなら、20年後に自分の資産になる方」という一言が成立する。
+        この表を印刷して持ち歩いてください。訪問で最初に出す紙はこれです。
+      </p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>賃貸継続 vs 自己所有 月額比較（自己資金30％・借入20年・年2.5％・元利均等）</caption>
+        <thead>
+          <tr>
+            <th>号室</th><th class="n">割付価格</th><th class="n">自己資金<br>(30%)</th><th class="n">借入額</th>
+            <th class="n">月返済額</th><th class="n">現況賃料<br>(税別)</th><th class="n">査定賃料<br>(税別)</th><th class="n">査定比<br>差額</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>101</td><td class="n">1億2,467万</td><td class="n">3,740万</td><td class="n">8,727万</td><td class="n">462,400</td><td class="n">404,000</td><td class="n">504,000</td><td class="n">−41,600</td></tr>
+          <tr><td>102</td><td class="n">4,646万</td><td class="n">1,394万</td><td class="n">3,252万</td><td class="n">172,300</td><td class="n">145,000</td><td class="n">222,000</td><td class="n">−49,700</td></tr>
+          <tr><td>103</td><td class="n">4,150万</td><td class="n">1,245万</td><td class="n">2,905万</td><td class="n">153,900</td><td class="n">144,600</td><td class="n">174,000</td><td class="n">−20,100</td></tr>
+          <tr><td>105</td><td class="n">5,785万</td><td class="n">1,736万</td><td class="n">4,050万</td><td class="n">214,600</td><td class="n">199,000</td><td class="n">259,000</td><td class="n">−44,400</td></tr>
+          <tr><td>201+202</td><td class="n">9,548万</td><td class="n">2,864万</td><td class="n">6,684万</td><td class="n">354,200</td><td class="n">351,000</td><td class="n">474,000</td><td class="n">−119,800</td></tr>
+          <tr><td>203</td><td class="n">6,308万</td><td class="n">1,892万</td><td class="n">4,416万</td><td class="n">234,000</td><td class="n">214,000</td><td class="n">255,000</td><td class="n">−21,000</td></tr>
+          <tr><td>205+206</td><td class="n">8,847万</td><td class="n">2,654万</td><td class="n">6,193万</td><td class="n">328,200</td><td class="n">299,000</td><td class="n">440,000</td><td class="n">−111,800</td></tr>
+          <tr><td>207</td><td class="n">9,238万</td><td class="n">2,771万</td><td class="n">6,467万</td><td class="n">342,700</td><td class="n">308,800</td><td class="n">380,000</td><td class="n">−37,300</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <h4>この試算を使うときの必須の断り書き</h4>
+      <ul>
+        <li>金利・期間は金融機関により異なります。必ず「概算です。実際の条件はお取引先の金融機関にご確認ください」と添えること。築29年RCのため、融資期間が20年より短くなる可能性は先に伝えておく。</li>
+        <li><strong>管理費・修繕積立金・固定資産税・都市計画税は上表に含んでいません。</strong>売主から区画別の内訳を取得し、必ず加算した実数で提示すること。ここを黙って出すと後で必ず揉めます。</li>
+        <li>賃料の是正は「新オーナーの判断次第」であり、確約はできません。<strong>「必ず上がります」と言ってはいけません</strong>（宅建業法47条1号／断定的判断の提供）。「査定はこの水準です」という事実の提示にとどめること。</li>
+        <li>立退きを匂わせるのは厳禁。事業用建物賃貸借にも借地借家法28条の正当事由が要ります。不安を煽った瞬間に案件も会社も壊れます。</li>
+      </ul>
+    </div>
+
+    <div class="note warn">
+      <h4>8月は31日ではなく、実働19営業日</h4>
+      <p>
+        平日20日から山の日（8/11・火）を引き、盆の8/13〜8/14を半稼働と見ると<strong>実質19営業日</strong>。
+        法人・士業・金融機関は8/13〜8/16がほぼ停止します。一方、<strong>テナント8社は店舗業種なので土日も営業中</strong>。
+        土日はテナント接触に、平日は法人・業者・士業に割り当てるのが、この案件の正しい時間の使い方です。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 1 ============ -->
+  <section id="s1">
+    <div class="sec-head">
+      <span class="sec-num">01 / 週次アクションプラン</span>
+      <h2>8月の日別行動指示</h2>
+    </div>
+
+    <div class="prose">
+      <p>
+        設計思想は3つ。<strong>①最初の5日で全チャネルを同時起動する</strong>（順番にやると盆で止まる）。
+        <strong>②現地に1日いれば8テナント全社に会える</strong>ため、8月5日を作戦の主戦場に置く。
+        <strong>③8月25日を一括／バラの分岐点</strong>に固定し、そこから先は迷わない。
+      </p>
+    </div>
+
+    <h3>毎日の型（この枠を崩さない）</h3>
+    <div class="week">
+      <div class="week-head"><span class="wk">DAILY</span><span class="wt">1日の標準スケジュール</span></div>
+      <div class="day">
+        <div class="d-when"><span class="dd">毎日</span><span class="dw">MON–SUN</span></div>
+        <div class="d-body">
+          <div class="slot"><span>09:00</span><span>前日のポータル反響・不在着信の処理。当日アポの確認電話。</span></div>
+          <div class="slot"><span>09:30</span><span>電話 第1波：不動産業者・法人。この時間帯が最も繋がる。</span></div>
+          <div class="slot"><span>12:30</span><span>電話 第2波：<strong>クリニック院長</strong>（昼休みが唯一の接続窓）。</span></div>
+          <div class="slot"><span>13:30</span><span>訪問・現地案内。移動中もポータル通知は必ず5分以内に折り返す。</span></div>
+          <div class="slot"><span>18:00</span><span>電話 第3波：クリニック（夕診後）・法人決裁者・テナントオーナー。</span></div>
+          <div class="slot"><span>19:30</span><span>追客メール送信、翌日資料の印刷、見込客ステータス更新。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 1 -->
+    <div class="week">
+      <div class="week-head">
+        <span class="wk">WEEK 1</span><span class="wt">8/3(月)〜8/9(日)　全チャネル同時起動</span>
+        <span class="wg">目標：接触8社／掲載完了／業者5社</span>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/3</span><span class="dw">MON</span><span class="tag key">起点</span></div>
+        <div class="d-body">
+          <div class="d-title">売主確認と掲載準備。ここが崩れると全部崩れる</div>
+          <div class="slot"><span>AM</span><span>サンヨーホームズへ確認書＋電話。<strong>①区分バラ売りの可否と区画別価格の正式承認</strong> ②取引態様の表示（売主／代理／専任媒介） ③賃貸借契約書8本の写し・普通借家か定期借家か・各更新時期・敷金保証金 ④区画別の管理費／修繕積立金／固都税 ⑤現況NOI 3.57％の算定根拠 ⑥内見時のテナント協力体制</span></div>
+          <div class="slot"><span>PM</span><span>レインズ登録（態様が許すなら即日／専任媒介なら義務）。楽待・健美家の入稿データを8区画分作成。テナント8社の代表者名・連絡先・定休日を賃貸借契約書から拾い出す。</span></div>
+          <div class="slot"><span>夕</span><span>翌日訪問の順路作成。<strong>101美容院・103理容室の定休日を必ず事前確認</strong>（火曜・水曜が多い）。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/4</span><span class="dw">TUE</span></div>
+        <div class="d-body">
+          <div class="d-title">ポータル入稿と業者向け一斉配信</div>
+          <div class="slot"><span>AM</span><span>楽待・健美家に8区画を入稿。<strong>掲載順は102（4,646万・NOI5.39％）と103（4,150万）を先頭に。</strong>安い区画ほど反響が出て、そこから他区画へ横展開できる。</span></div>
+          <div class="slot"><span>PM</span><span>業者向けPDF一式（修正済み図面8区画＋レントロール＋価格表＋手数料条件）を作成。不動産業者LINEグループへ投稿。過去に取引のある業者へメール一斉送信。</span></div>
+          <div class="slot"><span>夕</span><span>掲載反映を確認し、<strong>問合せ通知をスマホのプッシュに設定</strong>。以降、5分以内架電体制に入る。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/5</span><span class="dw">WED</span><span class="tag key">主戦場</span></div>
+        <div class="d-body">
+          <div class="d-title">現地ローラー：1棟に8社。1日で全社に会う</div>
+          <div class="slot"><span>09:30</span><span>現地着。外観・共用部・エントランスを撮影（ポータル追加画像用）。</span></div>
+          <div class="slot"><span>10:00</span><span>205+206 児童発達支援教室（午前は児童が少なく、管理者が在席しやすい）</span></div>
+          <div class="slot"><span>11:00</span><span>105 電気通信 ／ 203 駐車場メンテ（事務所業種は午前が確実）</span></div>
+          <div class="slot"><span>12:30</span><span><strong>207 内科クリニック（昼休み）</strong>。この枠を外すと院長には会えない。</span></div>
+          <div class="slot"><span>14:00</span><span>102 障がい者サービス</span></div>
+          <div class="slot"><span>15:30</span><span>101 美容院 ／ 103 理容室（午後の空き時間帯を狙う）</span></div>
+          <div class="slot"><span>17:00</span><span>201+202 塾（授業前の準備時間に室長が在席）</span></div>
+          <div class="d-body" style="padding:0">
+            <p style="font-size:0.85rem"><strong>各社で渡す3点</strong>：①該当区画の物件概要シート ②<strong>賃貸継続 vs 自己所有 月額比較シート（その区画の数字を入れた個別版）</strong> ③名刺。<br>
+            <strong>各社で取る3点</strong>：①決裁者の氏名と直通連絡先 ②取引金融機関 ③次回アポ（8/7〜8/10で日時確定）。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/6</span><span class="dw">THU</span></div>
+        <div class="d-body">
+          <div class="d-title">近隣不動産会社5社を連続訪問</div>
+          <div class="slot"><span>AM</span><span>業者用ファイル5部を製本。手数料条件を1枚にして最前面に入れる。</span></div>
+          <div class="slot"><span>13:00</span><span>センター北駅周辺5社を徒歩・自転車で連続訪問。1社30〜40分。<strong>電話でなく訪問</strong>。図面は必ず紙で置いてくる。</span></div>
+          <div class="slot"><span>—</span><span>渡すもの：修正済み図面全8区画・価格表・<strong>「3％＋6万円 満額、片手で結構です」の明記</strong>。取るもの：担当者名・携帯・メールアドレス・次回連絡日。</span></div>
+          <div class="slot"><span>18:00</span><span>8/5に不在だったテナントへ架電、再訪日を確定。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/7</span><span class="dw">FRI</span></div>
+        <div class="d-body">
+          <div class="d-title">税理士3事務所とクリニック院長7名</div>
+          <div class="slot"><span>10:00</span><span>同番地・至近の税理士3事務所へアポなし訪問。<strong>21名リストは使わない</strong>（後述）。徒歩圏の3件に集中。</span></div>
+          <div class="slot"><span>13:00</span><span>8/5で会えなかったテナントへ再訪。面談アポを確定させる。</span></div>
+          <div class="slot"><span>18:00</span><span><strong>近隣クリニック院長7名へ架電</strong>。夕診後（18:30〜19:30）が最大の接続窓。木曜午後休診の院は金曜夕方に回す。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/8</span><span class="dw">SAT</span></div>
+        <div class="d-body">
+          <div class="d-title">土曜は店舗業種のオーナー在席率が最も高い</div>
+          <div class="slot"><span>10:00</span><span>現地に終日滞在。101美容院・103理容室・201+202塾は土曜が稼ぎ時＝オーナー本人がいる。未接触先をここで潰し切る。</span></div>
+          <div class="slot"><span>随時</span><span>ポータル問合せの即日対応。土日は個人投資家が動く日で、反響のピーク。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/9</span><span class="dw">SUN</span></div>
+        <div class="d-body">
+          <div class="d-title">半日：個別提案資料の作り込み</div>
+          <div class="slot"><span>AM</span><span>接触できたテナント各社向けに、<strong>その区画の実数を入れた月額比較シートを8本個別作成</strong>し印刷。管理費・固都税を反映した実数版にする。</span></div>
+          <div class="slot"><span>PM</span><span>Week2のアポ表を確定。見込客をA（融資相談まで進む）／B（検討中）／C（脈なし）に初回分類。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 2 -->
+    <div class="week">
+      <div class="week-head">
+        <span class="wk">WEEK 2</span><span class="wt">8/10(月)〜8/16(日)　面談と提案、盆をまたぐ</span>
+        <span class="wg">目標：面談6件／提案書8本／買付1件</span>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/10</span><span class="dw">MON</span></div>
+        <div class="d-body">
+          <div class="d-title">自用取得の本命3社に面談（207・205+206・102）</div>
+          <div class="slot"><span>終日</span><span>面談2〜3件。提示するのは4点：割付価格／月額比較（実数版）／必要自己資金／融資の進め方。</span></div>
+          <div class="slot"><span>ゴール</span><span><strong>「金融機関に相談する」の確約と、相談日程の確定まで。</strong>「検討します」で終わらせない。その場で相手の取引金融機関名を聞き、いつ誰に話すかを決めて帰る。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/11</span><span class="dw">TUE</span><span class="tag hol">山の日</span></div>
+        <div class="d-body">
+          <div class="d-title">祝日は個人投資家が動く。終日レス体制</div>
+          <div class="slot"><span>終日</span><span>法人・業者は休み。ポータル反響が出る日なので、問合せ対応に専念。空き時間で提案資料の残りを仕上げる。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/12</span><span class="dw">WED</span></div>
+        <div class="d-body">
+          <div class="d-title">テナント面談2件＋業者フォロー</div>
+          <div class="slot"><span>AM</span><span>不動産会社5社へフォロー架電。<strong>「反応ありましたか」と聞かない。</strong>「102号室に問合せが2件入っています。御社のお客様で4,000万台をお探しの方は」と<strong>情報を持って掛ける</strong>。</span></div>
+          <div class="slot"><span>PM</span><span>テナント面談2件（201+202塾・105電気通信）。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/13</span><span class="dw">THU</span><span class="tag hol">盆</span></div>
+        <div class="d-body">
+          <div class="d-title">法人は止まる。店舗テナントは動いている</div>
+          <div class="slot"><span>終日</span><span>士業・銀行・法人はアプローチ対象から外す（掛けても不在で時間が溶ける）。<strong>テナント面談の残りを消化</strong>。103理容室・101美容院は盆も営業していることが多い。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/14</span><span class="dw">FRI</span><span class="tag hol">盆</span></div>
+        <div class="d-body">
+          <div class="d-title">同上＋盆明けの仕込み</div>
+          <div class="slot"><span>AM</span><span>テナント面談の残り、および8/10面談先の融資相談の進捗確認。</span></div>
+          <div class="slot"><span>PM</span><span>8/17（盆明け初日）の朝一に掛ける先を全部リストアップして、架電順に並べておく。盆明けの午前は最も繋がる時間帯なので1秒も無駄にしない。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/15</span><span class="dw">SAT</span></div>
+        <div class="d-body">
+          <div class="d-title">盆の週末は個人投資家の検討時間が年間で最長</div>
+          <div class="slot"><span>終日</span><span>ポータル問合せの即レス体制を維持。テナント最終面談。現地案内の依頼があれば最優先で受ける。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/16</span><span class="dw">SUN</span></div>
+        <div class="d-body">
+          <div class="d-title">中間棚卸し</div>
+          <div class="slot"><span>PM</span><span>全見込客をA／B／Cに再分類。<strong>ここから先はAにしか時間を使わない</strong>と決める。Week3の日程を確定。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 3 -->
+    <div class="week">
+      <div class="week-head">
+        <span class="wk">WEEK 3</span><span class="wt">8/17(月)〜8/23(日)　買付取得ラッシュ</span>
+        <span class="wg">目標：買付累計3件／契約1件</span>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/17</span><span class="dw">MON</span><span class="tag key">盆明け</span></div>
+        <div class="d-body">
+          <div class="d-title">盆明け初日の午前を全部電話に使う</div>
+          <div class="slot"><span>09:00</span><span>8/14に作った架電リストを上から消化。テナント・業者・士業を一気に叩き直す。</span></div>
+          <div class="slot"><span>PM</span><span>融資相談が進んでいる先へ<strong>「いつまでに回答が出ますか」を確定させる</strong>。日付が言えない先はランクを落とす。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/18</span><span class="dw">TUE</span></div>
+        <div class="d-body">
+          <div class="d-title">現地案内2〜3件。申込書を必ず携行</div>
+          <div class="slot"><span>終日</span><span>業者同行案内を含む。<strong>案内には毎回、記入可能な状態の買付証明書を持参する。</strong>持っていない日に決まることはない。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/19</span><span class="dw">WED</span></div>
+        <div class="d-body">
+          <div class="d-title">クロージング面談。買付記入まで持ち込む</div>
+          <div class="slot"><span>終日</span><span>Aランク先へ2回目の面談。目的は「検討の継続」ではなく<strong>買付証明書への記入</strong>。条件（価格・手付・決済時期・融資特約）を紙の上で詰める。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/20</span><span class="dw">THU</span></div>
+        <div class="d-body">
+          <div class="d-title">不動産会社5社を再訪（電話ではなく訪問）</div>
+          <div class="slot"><span>13:00</span><span>2回目の訪問で初めて本気度が伝わる。<strong>「9月以降は価格の見直しが入る可能性があります。8月中にお客様をお持ちいただくのが一番条件が通ります」</strong>と期限を明示。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/21</span><span class="dw">FRI</span><span class="tag key">判定</span></div>
+        <div class="d-body">
+          <div class="d-title">買付累計3件の判定日</div>
+          <div class="slot"><span>AM</span><span>買付が3件に届いているか確認。</span></div>
+          <div class="slot"><span>PM</span><span><strong>未達なら、値引き交渉の社内承認を先に取っておく</strong>（一括5.9億／区画別の指値許容幅）。交渉の場で「持ち帰ります」と言うと、そこで熱が切れて決まらない。承認は事前に取る。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/22</span><span class="dw">SAT</span></div>
+        <div class="d-body">
+          <div class="d-title">週末案内枠</div>
+          <div class="slot"><span>終日</span><span>個人客の案内を集中させる。テナント在館中のため室内内見は事前調整済みの区画のみ。外観・共用部・周辺環境の案内で組み立てる。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/23</span><span class="dw">SUN</span></div>
+        <div class="d-body">
+          <div class="d-title">一括／バラの事前判定</div>
+          <div class="slot"><span>PM</span><span>一括買主の実在性を判定。買付または具体的な融資相談まで進んだ一括検討者がいなければ、8/25のバラ確定に備えてWeek4の段取りを組み替える。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 4 -->
+    <div class="week">
+      <div class="week-head">
+        <span class="wk">WEEK 4</span><span class="wt">8/24(月)〜8/31(月)　契約実行</span>
+        <span class="wg">目標：契約3〜5件／全戸の帰趨確定</span>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/24</span><span class="dw">MON</span></div>
+        <div class="d-body">
+          <div class="d-title">契約書・重説の準備を法務へ</div>
+          <div class="slot"><span>AM</span><span>買付が入っている区画の契約書・重要事項説明書の作成を依頼。<strong>決済は9月中旬〜下旬に置く。8月中の目標は「契約」であって「決済」ではない。</strong>ここを混同すると融資が間に合わず全部飛ぶ。</span></div>
+          <div class="slot"><span>PM</span><span>買付先へ契約希望日を打診し、8/27〜8/31で日を押さえる。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/25</span><span class="dw">TUE</span><span class="tag key">分岐点</span></div>
+        <div class="d-body">
+          <div class="d-title">一括／バラ 確定日。ここで迷わないために日付を先に決めておく</div>
+          <div class="slot"><span>—</span><span><strong>この日までに一括の買付証明が入っていなければ、一括提案を停止し、全区画バラ確定モードへ移行する。</strong>以降、一括検討者への対応は行わない。</span></div>
+          <div class="slot"><span>理由</span><span>バラ売りを進めるほど残区画の構成が偏り、一括の商品性が落ちます（高利回りの102・205+206から先に売れるため）。両にらみを続けるとどちらも失う。日付で切る。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/26</span><span class="dw">WED</span></div>
+        <div class="d-body">
+          <div class="d-title">重説ドラフト完成・契約日確定</div>
+          <div class="slot"><span>終日</span><span>契約日を確定連絡。未決の見込客へ「残り◯区画」の第1報を配信（詳細は第6項）。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/27</span><span class="dw">THU</span></div>
+        <div class="d-body">
+          <div class="d-title">契約実行 ①</div>
+          <div class="slot"><span>終日</span><span><strong>1日2件が物理的な上限</strong>（重説の読み合わせに1件2時間）。1名体制なのでここを詰め込みすぎると事故が起きる。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/28</span><span class="dw">FRI</span></div>
+        <div class="d-body">
+          <div class="d-title">契約実行 ②＋残区画の一斉配信</div>
+          <div class="slot"><span>AM</span><span>契約2件。</span></div>
+          <div class="slot"><span>PM</span><span>成約区画に「ご成約済」を打った図面を、業者・LINEグループ・ポータルへ即日反映。残戸数を明示して配信。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/29–30</span><span class="dw">SAT–SUN</span></div>
+        <div class="d-body">
+          <div class="d-title">残区画の最終案内・申込取得</div>
+          <div class="slot"><span>終日</span><span>Bランクの見込客を全部叩き直す。「残り◯区画になりました」は事実として強い。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">8/31</span><span class="dw">MON</span><span class="tag key">最終日</span></div>
+        <div class="d-body">
+          <div class="d-title">最終契約日／プランB発動判定</div>
+          <div class="slot"><span>AM</span><span>最終契約。</span></div>
+          <div class="slot"><span>PM</span><span>未達区画を確定し、<strong>9/1付でプランBを発動</strong>（第7項）。価格改定の社内起案はこの日のうちに提出する。9月1日に手ぶらで入らない。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note warn">
+      <h4>8/17起点で読む場合の圧縮対応表</h4>
+      <p>
+        本日（8/17）から着手する場合、Week1の起動作業を丸ごと落とすと何も始まりません。<strong>Week1の5日分を最初の3日に圧縮</strong>してください。残りは11営業日です。
+      </p>
+      <ul>
+        <li><strong>8/17（月）</strong>＝ フル版の8/3＋8/4。午前に売主確認の電話、午後にポータル入稿とレインズ登録、夕方に業者向けPDF配信とLINE投稿。この日に掲載まで終わらせる。</li>
+        <li><strong>8/18（火）</strong>＝ フル版の8/5。現地ローラーで8テナント全社。この日を落としたら8戸は消えます。</li>
+        <li><strong>8/19（水）</strong>＝ フル版の8/6＋8/7。午前に税理士3事務所、午後に不動産会社5社、夕方にクリニック7院へ架電。</li>
+        <li><strong>8/20（木）〜8/23（日）</strong>＝ フル版のWeek2（面談・提案）を4日に圧縮。</li>
+        <li><strong>8/24（月）以降</strong>＝ フル版のWeek3＋Week4を統合。一括／バラの分岐点は<strong>8/25のまま動かさない</strong>。</li>
+      </ul>
+      <p>
+        圧縮版での現実的な着地は<strong>契約2〜3戸＋買付2〜3件</strong>です。8戸は、後述の「複数戸まとめ買い」が1件出た場合にのみ届きます。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 2 ============ -->
+  <section id="s2">
+    <div class="sec-head">
+      <span class="sec-num">02 / 転換率とシナリオ</span>
+      <h2>各チャネルの歩留まりと、8戸に届く唯一の形</h2>
+    </div>
+
+    <div class="prose">
+      <p>
+        以下の転換率は、投資用区分店舗・1名体制・実働19営業日という条件での想定値です。実測値ではないので、
+        Week1終了時点で実際の数字を入れて必ず更新してください。
+      </p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>チャネル別 転換率想定（8月・実働19営業日）</caption>
+        <thead>
+          <tr><th>チャネル</th><th class="n">母数</th><th class="n">接触</th><th class="n">面談<br>／内見</th><th class="n">買付</th><th class="n">契約</th><th>根拠</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>既存テナント自用取得</strong></td>
+            <td class="n">8社</td><td class="n">8</td><td class="n">6</td><td class="n">3</td><td class="n">2–3</td>
+            <td>連絡先を保有し確実に接触可。内見不要・調査不要で決断が速い。動機（賃料是正）が明確。</td>
+          </tr>
+          <tr>
+            <td>地元業者経由<br><small>レインズ／訪問5社／LINE</small></td>
+            <td class="n">30社</td><td class="n">30</td><td class="n">4</td><td class="n">2</td><td class="n">1–2</td>
+            <td>買主を持っているのは業者。満額手数料・片手可が効く。ただし8月は業者も盆で動きが鈍い。</td>
+          </tr>
+          <tr>
+            <td>ポータル2媒体<br><small>楽待・健美家</small></td>
+            <td class="n">—</td><td class="n">18件</td><td class="n">3</td><td class="n">1</td><td class="n">0–1</td>
+            <td>問合せ18件→通話接続11（61％）→内見3（27％）→買付1。唯一の新規流入源だが単体では1戸が上限。</td>
+          </tr>
+          <tr>
+            <td>近隣クリニック院長</td>
+            <td class="n">7院</td><td class="n">5</td><td class="n">2</td><td class="n">1</td><td class="n">0–1</td>
+            <td>接続窓が昼休みと夕診後のみ。母数が小さく期待値も小さいが、1件当たりの単価が高い。</td>
+          </tr>
+          <tr>
+            <td>税理士3事務所</td>
+            <td class="n">3</td><td class="n">3</td><td class="n">1</td><td class="n">0–1</td><td class="n">0–1</td>
+            <td>徒歩圏のみ。紹介が出れば大きいが、8月中に顧問先が動く確率は低い。</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr><td>合計</td><td class="n">—</td><td class="n">—</td><td class="n">16</td><td class="n">7–8</td><td class="n">3–7</td><td>中央値は4〜5戸</td></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="note warn">
+      <h4>正直に申し上げます：バラ8件を8月中に契約する確率は高くありません</h4>
+      <p>
+        1名体制で、契約1件あたり重説読み合わせだけで2時間。8件を8月中に個別契約するのは、
+        歩留まり以前に<strong>物理的な作業量として厳しい</strong>。上表の中央値も4〜5戸です。
+      </p>
+      <p>
+        したがって<strong>8戸達成には「複数戸をまとめて1社が取る」契約が最低1件必要</strong>です。これが唯一の到達経路です。
+        以下のシナリオXは、その形を具体化したものです。
+      </p>
+    </div>
+
+    <h3>シナリオX：8戸達成の唯一の形</h3>
+
+    <div class="tablewrap">
+      <table>
+        <caption>8戸達成シナリオ（合計 6億0,989万円・全戸消化）</caption>
+        <thead>
+          <tr><th>区分</th><th>区画</th><th class="n">戸数</th><th class="n">金額</th><th class="n">対象NOI</th><th>買主像と獲得経路</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>A. テナント自用</strong></td>
+            <td>102 ／ 205+206 ／ 207</td>
+            <td class="n">3</td><td class="n">2億2,731万</td><td class="n">—</td>
+            <td>賃料ギャップが+53％／+47％／+23％と大きく、自用取得の動機が最も強い3区画。8/5の現地ローラーで直接接触。</td>
+          </tr>
+          <tr>
+            <td><strong>B. 投資家（小口）</strong></td>
+            <td>103 ／ 105</td>
+            <td class="n">2</td><td class="n">9,935万</td><td class="n">4.73／5.05%</td>
+            <td>4,150万・5,785万と最も手が届く価格帯。ポータル反響と地元業者の客付けで取る。</td>
+          </tr>
+          <tr>
+            <td><strong>C. 残戸まとめ買い</strong></td>
+            <td>101 ／ 201+202 ／ 203</td>
+            <td class="n">3</td><td class="n">2億8,323万</td><td class="n">4.91%</td>
+            <td>単体では最も売りにくい3区画（101は1.25億でNOI4.56％、203は動機が薄い）。<strong>まとめて4.91％の2.8億パッケージにすると商品性が立ち上がる。</strong>地元業者・信金の取引先法人経由。</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr><td colspan="2">合計</td><td class="n">8</td><td class="n">6億0,989万</td><td class="n">—</td><td>—</td></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="note ok">
+      <h4>Cパッケージが作戦の急所</h4>
+      <p>
+        101号室（1億2,467万・NOI4.56％）は単体では8月中にまず売れません。金額が最大で利回りが最低、テナントの美容院に1.25億は重すぎる。
+        ところが<strong>201+202（NOI5.60％）と抱き合わせると、3区画で4.91％の2億8,323万パッケージになります。</strong>
+      </p>
+      <p>
+        だから<strong>201+202を安易にバラで売ってはいけません。</strong>ここを先に単体で売ると、101と203が永久に残ります。
+        8/25の分岐点まで、201+202は「Cパッケージの構成要素」として温存する。これが今回の作戦で最も繊細な判断です。
+      </p>
+    </div>
+
+    <h3>週次の必達KPI</h3>
+    <div class="tablewrap">
+      <table>
+        <caption>週次KPI（未達の週は翌週の頭で必ず原因を潰す）</caption>
+        <thead><tr><th>週</th><th class="n">接触</th><th class="n">面談・内見</th><th class="n">買付</th><th class="n">契約</th><th>この週の合否判定</th></tr></thead>
+        <tbody>
+          <tr><td>Week 1</td><td class="n">23</td><td class="n">8</td><td class="n">0</td><td class="n">0</td><td>ポータル掲載完了・テナント8社接触完了。<strong>どちらか欠けたら赤信号</strong></td></tr>
+          <tr><td>Week 2</td><td class="n">10</td><td class="n">6</td><td class="n">1</td><td class="n">0</td><td>融資相談に進んだ先が3社以上あるか</td></tr>
+          <tr><td>Week 3</td><td class="n">15</td><td class="n">6</td><td class="n">3</td><td class="n">1</td><td>買付3件。未達なら値引き承認を事前取得</td></tr>
+          <tr><td>Week 4</td><td class="n">10</td><td class="n">4</td><td class="n">2</td><td class="n">3–5</td><td>Cパッケージの相手が特定できているか</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <p>
+        <strong>コミットライン</strong>：契約3〜4戸＋買付2件。<strong>ストレッチ目標</strong>：8戸（Cパッケージ成立時のみ）。
+        この2本立てで社内報告してください。8戸だけを掲げると、4戸取れても失敗報告になり、次の月の打ち手が縮みます。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 3 ============ -->
+  <section id="s3">
+    <div class="sec-head">
+      <span class="sec-num">03 / 優先順位</span>
+      <h2>何を捨て、何に集中するか</h2>
+    </div>
+
+    <div class="prose">
+      <p>
+        1名・19営業日。使える時間は約150時間しかありません。ここでの選択が結果のほぼ全部を決めます。
+        <strong>捨てる判断のほうが、やる判断より効きます。</strong>
+      </p>
+    </div>
+
+    <h3>捨てるもの</h3>
+    <div class="cols">
+      <div class="card kill">
+        <span class="ct">DMリスト9,394社への追加発送</span>
+        <p>494社でゼロ。同じ手法の量的拡大は、到達に2週間かかったうえで期待反響が読めません。<strong>全捨て。</strong></p>
+        <p><small>ただし例外1つ：Sランク上位50社のみ、他チャネルが空いた時間帯の<strong>電話</strong>用リストとして残す。「送って待つ」のではなく「掛ける」なら別物です。</small></p>
+      </div>
+      <div class="card kill">
+        <span class="ct">税理士21名への一斉アプローチ</span>
+        <p>移動時間だけで数日消えます。<strong>同番地・徒歩圏の3事務所に絞る。</strong>残り18名は9月以降。</p>
+      </div>
+      <div class="card kill">
+        <span class="ct">信託銀行への紹介依頼</span>
+        <p>銀行の稟議は月単位で動きます。8月の成果には間に合いません。<strong>8月のKPIから外す。</strong>週1回30分だけ、9月以降の種まきとしてメールを出す。</p>
+      </div>
+      <div class="card kill">
+        <span class="ct">リノシーへの掲載</span>
+        <p>RENOSYは区分マンション投資を主軸とする自社サービス事業者で、事業用店舗の掲載媒体としては適合しません。<strong>楽待・健美家の2媒体に集中。</strong></p>
+        <p><small>3媒体目を足すなら、掲載ではなく<strong>レインズと業者間流通</strong>。無料で、買主を持っている相手に直接届きます。</small></p>
+      </div>
+      <div class="card kill">
+        <span class="ct">セミナー・イベント・新規広告</span>
+        <p>企画から集客まで最低6週間。8月には物理的に間に合いません。<strong>検討すらしない。</strong></p>
+      </div>
+      <div class="card kill">
+        <span class="ct">大手法人への直接提案</span>
+        <p>制約条件どおり。門前払いの1件に半日使うくらいなら、テナント1社に会うほうが100倍効きます。</p>
+      </div>
+    </div>
+
+    <h3>集中するもの（時間配分つき）</h3>
+    <div class="cols">
+      <div class="card keep">
+        <span class="ct">① 既存テナント8社　40％</span>
+        <p><strong>最優先。</strong>唯一、確実に接触でき、動機があり、内見も調査も不要な母集団です。1棟に全員いるので移動時間がゼロ。</p>
+        <p>ここから<strong>2〜3戸</strong>を取る。取れなければ8月は終わります。</p>
+      </div>
+      <div class="card keep">
+        <span class="ct">② 地元業者への配布　30％</span>
+        <p>レインズ登録＋近隣5社訪問＋業者LINE＋修正済み図面の一斉送付。<strong>買主を持っているのは彼らです。</strong>満額手数料・片手可がインセンティブ。</p>
+        <p>ここから<strong>1〜2戸</strong>、そして<strong>Cパッケージの相手</strong>を探す。</p>
+      </div>
+      <div class="card keep">
+        <span class="ct">③ ポータル2媒体＋即日架電　20％</span>
+        <p>唯一の新規流入源。掲載そのものより<strong>5分以内の折り返し</strong>が成果を決めます。安い102・103を先頭に置き、そこから他区画へ横展開。</p>
+      </div>
+      <div class="card keep">
+        <span class="ct">④ クリニック7院＋税理士3事務所　10％</span>
+        <p>期待値は小さいが単価が高い。<strong>接続窓が限られる時間帯（昼休み・夕診後）は他の作業ができない時間帯でもある</strong>ため、時間の重複が起きません。だから残す。</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <h4>迷ったときの一行ルール</h4>
+      <p>
+        <strong>「この行動は、8月31日までに買付証明書の署名に繋がるか？」</strong>
+        Yesなら実行、Noなら9月に回す。資料の作り込み、リストの整備、体裁の調整はすべてNoです。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 4 ============ -->
+  <section id="s4">
+    <div class="sec-head">
+      <span class="sec-num">04 / トークスクリプト</span>
+      <h2>電話・訪問で読み上げる原稿</h2>
+    </div>
+
+    <div class="prose">
+      <p>そのまま読める形にしてあります。<span class="seal">赤い縦線が自分の発言</span>、灰色が相手の想定反応です。</p>
+    </div>
+
+    <!-- Script 1 -->
+    <div class="script">
+      <div class="script-head">
+        <span class="st">A. 近隣クリニック院長向け（電話）</span>
+        <span class="sm">推奨時間帯 12:30–13:45 ／ 18:30–19:30</span>
+      </div>
+      <div class="script-body">
+        <h4>受付突破</h4>
+        <div class="line me">
+          <span class="who">自分</span>
+          <span class="say">お世話になります。◯◯の中山と申します。恐れ入ります、<strong>院長先生に、センター北駅前の医療テナントビルの件で</strong>10分だけお時間をいただけないかというご相談です。今お手すきでなければ、ご都合のよいお時間に改めてお掛け直しいたしますので、お伝えいただけますでしょうか。</span>
+        </div>
+        <p style="font-size:0.82rem;color:var(--slate)">※「営業です」と言わない。「先生ご本人に関わる案件」であることと、<strong>折り返しの代替案</strong>を先に出すのが突破率を上げます。</p>
+
+        <h4>院長本人へ</h4>
+        <div class="line me">
+          <span class="who">自分</span>
+          <span class="say">お忙しいところ恐れ入ります。◯◯の中山です。3分だけよろしいでしょうか。<br><br>
+          センター北駅から徒歩5分、中川中央1丁目の<strong>サンリーノ港北センター北</strong>という店舗事務所ビルなのですが、1階と2階の8区画を今回オーナー様が手放されることになりまして。全区画テナント入居中で、うち1区画は内科クリニックさんが入っておられます。<br><br>
+          なぜ先生にお電話したかと申しますと、<strong>この規模の区分店舗はまず表に出ません</strong>し、価格帯も4,150万円から1億2,000万円台と幅がありますので、先生ご自身の資産形成として、あるいは分院や移転先としてご検討いただける方に先にお声がけしております。<br><br>
+          すでにテナントが入っておりますので、<strong>お買いになった翌月から賃料収入が入る形</strong>です。図面と収支をまとめたA4の資料がございますので、まずはお送りするだけでもよろしいでしょうか。</span>
+        </div>
+
+        <div class="rebuts">
+          <h4>切り返し</h4>
+          <div class="rebut"><b>「そういうのは間に合っている」</b><br>
+          承知しました。1点だけ伺わせてください。<strong>先生の今の医院は、賃貸でしょうか、それとも自己所有でしょうか。</strong>……（賃貸なら）でしたら、資料だけお手元に置いていただくのはいかがでしょう。ご移転や、法人での資産保有をお考えになるタイミングは必ず来ますので。お送り先だけ教えていただけますか。</div>
+
+          <div class="rebut"><b>「今は忙しい」</b><br>
+          かしこまりました。<strong>◯日の同じ時間帯に改めてお掛けしてもよろしいですか。</strong>それまでに資料だけお送りしておきます。（※必ず日時を取る。「またご連絡します」で切らない）</div>
+
+          <div class="rebut"><b>「いくらなの」</b><br>
+          8区画ございまして、一番小さい46㎡の区画が4,150万円、一番大きい136㎡が1億2,467万円です。想定利回りは4.5％から5.6％。<strong>先生に一番向くのは、106㎡で9,238万円の区画かと思います。今そこに内科クリニックさんが入っておられて、</strong>お買いになればそのまま賃料が入ります。</div>
+
+          <div class="rebut"><b>「利回りが低い」</b><br>
+          おっしゃるとおり、現況の賃料水準は市場より低い設定です。<strong>ただ、そこがこの物件の余地でして、</strong>現況の賃料が査定水準に対して平均で3割ほど低い。ご覧いただく資料に区画ごとの査定賃料を載せてありますので、そこだけ見ていただければ判断していただけると思います。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script 2 -->
+    <div class="script">
+      <div class="script-head">
+        <span class="st">B. 近隣不動産会社向け（訪問・飛び込み）</span>
+        <span class="sm">推奨時間帯 平日 13:00–17:00</span>
+      </div>
+      <div class="script-body">
+        <h4>受付・入口</h4>
+        <div class="line me">
+          <span class="who">自分</span>
+          <span class="say">お世話になります、◯◯の中山と申します。センター北の店舗ビルの売却をお預かりしておりまして、<strong>御社に客付けをお願いしたくお伺いしました。</strong>売買のご担当の方、いらっしゃいますでしょうか。</span>
+        </div>
+        <p style="font-size:0.82rem;color:var(--slate)">※「お願いしたく」と最初に言い切る。業者訪問で最も嫌われるのは目的が読めない訪問です。</p>
+
+        <h4>担当者へ</h4>
+        <div class="line me">
+          <span class="who">自分</span>
+          <span class="say">サンリーノ港北センター北の1階・2階、<strong>区分8区画</strong>です。図面をお持ちしました。<br><br>
+          全戸テナント付きのオーナーチェンジで、<strong>4,150万円から1億2,467万円まで、想定利回りは4.56％から5.61％</strong>。区画ごとにバラでお出しできますし、複数戸まとめての形にも対応します。<br><br>
+          <strong>手数料は満額（3％＋6万円・税別）お出しします。両手をいただこうとは思っておりません、御社の片手で結構です。</strong><br><br>
+          売主はサンヨーホームズさんで、<strong>9月以降は価格の見直しが入る可能性がありますので、8月中にお客様をお持ちいただくのが、条件面で一番通りやすいです。</strong><br><br>
+          図面はPDFでもお送りします。ご担当者様のメールアドレスをいただけますか。</span>
+        </div>
+
+        <div class="rebuts">
+          <h4>切り返し</h4>
+          <div class="rebut"><b>「今そういう客はいない」</b><br>
+          承知しました。<strong>図面だけ置かせてください。</strong>4,000万台の区画が2つありますので、その価格帯のお客様が出たときに思い出していただければ十分です。あと、御社で<strong>店舗や事務所を探しておられる借主さん</strong>がいらしたら、それも教えてください。買主でなくても構いません。</div>
+
+          <div class="rebut"><b>「テナント入居中なら中は見られないでしょう」</b><br>
+          そのとおりで、室内は事前調整が要ります。ただ<strong>レントロールと図面、それから外観・共用部はいつでもご案内できます</strong>し、本気のお客様であればテナントさんに個別に調整をかけます。<strong>ご一報いただければ2〜3日で段取りします。</strong></div>
+
+          <div class="rebut"><b>「利回りが低い」</b><br>
+          現況は3.57％です。<strong>ただ査定賃料ベースだと4.87％まで上がります。</strong>現況賃料が市場より平均3割低い状態でして、賃料是正の余地がそのまま残っている物件です。<strong>そこを狙えるお客様に向けた商品</strong>だと思っていただければ。</div>
+
+          <div class="rebut"><b>「一括じゃないと買わない客なんだけど」</b><br>
+          <strong>一括もお受けできます。</strong>6億991万円です。むしろ一括のお客様がいらっしゃるなら最優先でお繋ぎください。（※<strong>8/25以降にバラ確定モードへ移行した場合、この返しは使わない</strong>）</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script 3 -->
+    <div class="script">
+      <div class="script-head">
+        <span class="st">C. 税理士事務所向け（訪問・飛び込み）</span>
+        <span class="sm">推奨時間帯 平日 10:00–12:00（月初・月末は避ける）</span>
+      </div>
+      <div class="script-body">
+        <div class="line me">
+          <span class="who">自分</span>
+          <span class="say">突然お伺いして恐縮です。◯◯の中山と申します。<strong>すぐ近くの中川中央1-39-29の店舗ビルの売却をお預かりしておりまして、</strong>先生の顧問先様で、法人での不動産取得や資産の組み替えをお考えの方がいらっしゃらないかと思い、資料をお持ちしました。3分だけよろしいでしょうか。</span>
+        </div>
+        <div class="line me">
+          <span class="who">自分</span>
+          <span class="say">区分8区画で、<strong>4,150万円から1億2,467万円まで。全戸テナント入居中です。</strong>法人で事業用資産として持てる規模ですし、自社で使いながら残りを賃貸に回すこともできます。<strong>センター北駅徒歩5分でこの価格帯は、普段まず出てきません。</strong><br><br>
+          先生にお願いしたいのは、紹介というより<strong>「こういうのが出ていますよ」と一言お伝えいただくだけ</strong>で結構です。ご関心のある方がいらっしゃったら、私が直接ご説明にあがります。</span>
+        </div>
+        <div class="line them">
+          <span class="who">相手</span>
+          <span class="say">紹介料みたいなものは出るの？</span>
+        </div>
+        <div class="line me">
+          <span class="who">自分</span>
+          <span class="say"><strong>お礼の可否と方法については、社内で確認したうえで改めてご連絡させてください。</strong>法令上の整理が必要な部分ですので、この場でお約束はいたしかねます。</span>
+        </div>
+
+        <div class="note warn" style="max-width:none">
+          <h4>紹介料は、その場で金額を口約束しない</h4>
+          <p>
+            宅建業免許を持たない方への報酬支払いは、態様によって<strong>宅建業法12条（無免許事業の禁止）に抵触するおそれ</strong>があります。
+            単なる情報提供の対価にとどまる範囲かどうかは個別判断です。<strong>金額・条件は必ず社内の法務・コンプライアンス確認を経てから回答してください。</strong>
+            ここで安請け合いすると、成約後に支払えなくなって関係が壊れます。
+          </p>
+        </div>
+
+        <div class="rebuts">
+          <h4>切り返し</h4>
+          <div class="rebut"><b>「そういう話はうちでは扱わない」</b><br>
+          承知しました。<strong>資料だけ置かせてください。</strong>ご決算のご相談の中で、法人の余剰資金の運用先という話が出ることもあるかと思いますので、その時に思い出していただければ十分です。</div>
+
+          <div class="rebut"><b>「顧問先に勧めて損させたら困る」</b><br>
+          ごもっともです。<strong>ですので「勧めてください」とは申しません。</strong>「こういうものが近所に出ている」という情報として置いていただくだけで結構です。ご判断は先生と顧問先様でなさってください。数字の資料は全部お出しします。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5 ============ -->
+  <section id="s5">
+    <div class="sec-head">
+      <span class="sec-num">05 / 反響対応</span>
+      <h2>ポータル問合せから申込取得までの時間軸</h2>
+    </div>
+
+    <div class="prose">
+      <p>
+        ポータル反響は<strong>速度がすべて</strong>です。問合せた人は同時に他物件にも問い合わせています。
+        最初に電話が繋がった営業が案内を取り、案内を取った営業が申込を取ります。<strong>掲載の巧拙より折り返しの速さが成果を決めます。</strong>
+      </p>
+    </div>
+
+    <div class="week">
+      <div class="week-head"><span class="wk">RESPONSE</span><span class="wt">問合せ受信からの標準タイムライン</span></div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">T+5分</span><span class="dw">以内</span><span class="tag key">最重要</span></div>
+        <div class="d-body">
+          <div class="d-title">架電。移動中でも運転中以外は必ず掛ける</div>
+          <div class="slot"><span>繋がった</span><span>そのまま初回ヒアリングへ（下記）。</span></div>
+          <div class="slot"><span>不通</span><span>即座にSMS＋メール。「◯◯の中山です。◯号室のお問合せありがとうございます。資料をメールでお送りしました。改めてお電話いたします」。<strong>SMSを打つと折り返し率が明確に上がります。</strong></span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">T+1h</span><span class="dw">／当日18:30<br>／翌9:30<br>／翌18:30</span></div>
+        <div class="d-body">
+          <div class="d-title">架電は計4回まで。時間帯を変えて掛ける</div>
+          <div class="slot"><span>—</span><span>同じ時間帯に4回掛けても繋がりません。<strong>朝・昼・夕で窓を変える。</strong>4回で繋がらなければ架電を止め、メール2通に切り替えて追客リストへ落とす。追い続けても時間が溶けるだけです。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">初回通話</span><span class="dw">8–12分</span></div>
+        <div class="d-body">
+          <div class="d-title">この5項目を必ず取り切る</div>
+          <div class="d-body" style="padding:0">
+            <ul>
+              <li><strong>①自用か投資か</strong>（自用なら業種と現在の賃料水準まで踏み込む）</li>
+              <li><strong>②予算と自己資金</strong>（「お借入はどのくらいお考えですか」と聞く）</li>
+              <li><strong>③融資予定先</strong>（取引金融機関名。ここが言える人は本気）</li>
+              <li><strong>④取得時期</strong>（「いつ頃までに」。年内か来年かで扱いが変わる）</li>
+              <li><strong>⑤法人か個人か</strong>（法人なら決裁プロセスと決裁者を確認）</li>
+            </ul>
+            <p style="font-size:0.85rem;margin-top:0.5rem">
+              <strong>通話の終わりで必ず現地案内の日程を出す。</strong>「一度ご覧になりませんか。今週末の土曜と日曜、どちらがよろしいですか」と<strong>二択で聞く</strong>。「ご検討ください」で切ると次がありません。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">T+24h</span><span class="dw">以内</span></div>
+        <div class="d-body">
+          <div class="d-title">個別提案資料を送付</div>
+          <div class="slot"><span>—</span><span>該当区画のレントロール／収支／融資試算／周辺賃料事例。<strong>汎用資料を送らない。</strong>「◯◯様専用」と入れて、聞き取った予算・自己資金の数字を反映した1枚を必ず1ページ目に置く。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">T+72h</span><span class="dw">以内</span></div>
+        <div class="d-body">
+          <div class="d-title">現地案内</div>
+          <div class="slot"><span>—</span><span>テナント営業中のため、案内の中心は<strong>外観・共用部・周辺環境・センター北駅からの動線</strong>。室内は事前調整が取れた区画のみ。</span></div>
+          <div class="slot"><span>必携</span><span><strong>記入可能な状態の買付証明書</strong>／重説ドラフト／手付条件のメモ／印鑑不要で書ける様式。<strong>持っていない日に決まることはありません。</strong></span></div>
+          <div class="slot"><span>案内中</span><span>テナントの営業状況を実際に見せる。「今この店に人が入っているのがそのまま賃料です」は、紙の資料より強い。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">案内当日</span><span class="dw">その場で</span><span class="tag key">勝負</span></div>
+        <div class="d-body">
+          <div class="d-title">その場で申込まで持ち込む</div>
+          <div class="slot"><span>—</span><span>案内直後、近くの喫茶店でも構わないので座る。<strong>「他にご覧になった物件と比べていかがでしたか」→「気になる点はどこですか」→「その点が解消できたらお進めになりますか」</strong>の順で聞く。最後の質問にYesが出たら、その場で買付証明書を出す。</span></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="d-when"><span class="dd">案内+48h</span><span class="dw">期限</span></div>
+        <div class="d-body">
+          <div class="d-title">申込か見送りかを確定させる</div>
+          <div class="slot"><span>—</span><span><strong>曖昧なまま流さない。</strong>「◯日までにお返事をいただけますか。他にご検討中の方がいらっしゃいますので」（※実際に他の検討者がいる場合のみ言う）。見送りなら理由を必ず聞き取り、他区画への振り替えを提案する。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <h4>1名体制での現実的な運用</h4>
+      <p>
+        訪問中に問合せが来たときのために、<strong>メール返信のテンプレートを8区画分あらかじめ作り、スマホから3タップで送れる状態にしておく</strong>こと。
+        Week1の8/4に作り切ってください。これがないと、移動中の反響を取りこぼします。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 6 ============ -->
+  <section id="s6">
+    <div class="sec-head">
+      <span class="sec-num">06 / 緊急感の演出</span>
+      <h2>1戸決まった瞬間から動かす「残りわずか」</h2>
+    </div>
+
+    <div class="prose">
+      <p>
+        1戸目の成約は、<strong>2戸目以降を動かすための最大の材料</strong>です。決まった当日に動かないと効果が消えます。
+        大前提として、<strong>使えるのは事実だけ</strong>。ここを踏み外すと宅建業法47条1号（重要事項の不実告知・断定的判断の提供）の問題になります。
+      </p>
+    </div>
+
+    <div class="cols">
+      <div class="card keep">
+        <span class="ct">当日中にやる（3時間以内）</span>
+        <ul>
+          <li>配置図に<strong>「ご成約済」を打った版</strong>を作成し差し替え</li>
+          <li>ポータルの該当区画を「商談中」→契約後は削除</li>
+          <li>業者5社・LINEグループへ<strong>「◯号室ご成約、残り◯区画」</strong>を配信</li>
+          <li>検討中の全見込客へ個別に連絡</li>
+        </ul>
+      </div>
+      <div class="card keep">
+        <span class="ct">毎週月曜の残区画配信</span>
+        <p>業者・見込客向けに<strong>残区画一覧を毎週更新</strong>して送る。戸数が減っていく事実そのものが圧力になります。件名は「サンリーノ港北センター北 残◯区画のご案内」。</p>
+      </div>
+      <div class="card keep">
+        <span class="ct">検討中の客への言い方</span>
+        <p>×「他に申込が入りました」（事実でなければ言えない）<br>
+        ○<strong>「102号室が決まりました。◯◯様がご検討中の103号室はまだ空いております」</strong><br>
+        事実の報告だけで、緊急感は十分に伝わります。</p>
+      </div>
+      <div class="card keep">
+        <span class="ct">同一区画に複数の検討者がいる場合のみ</span>
+        <p><strong>「先着順です」と伝え、実際に先着で処理する。</strong>言った以上は必ずそのとおり運用してください。運用が伴わないと次から誰も信じません。</p>
+      </div>
+      <div class="card keep">
+        <span class="ct">一括検討者に対して（これは構造的な事実）</span>
+        <p><strong>「バラで区画が決まっていくと、一括ではご提供できなくなります」</strong>——これは煽りではなく事実です。一括検討者を動かす最も強い一言。8/25の分岐点も併せて伝える。</p>
+      </div>
+      <div class="card keep">
+        <span class="ct">テナントに対して</span>
+        <p><strong>「同じフロアの◯号室が、入居されているテナント様ご自身に決まりました」</strong>——同業・隣人が買ったという事実は、他のテナントに最も効きます。1戸目を必ずテナント自用で取りたい理由がこれです。</p>
+      </div>
+    </div>
+
+    <div class="note warn">
+      <h4>絶対にやってはいけないこと</h4>
+      <ul>
+        <li><strong>存在しない申込があると言う</strong>（宅建業法47条1号・不実の告知）</li>
+        <li><strong>根拠のない値上げ予告</strong>（「来月から必ず上がります」は断定的判断の提供）</li>
+        <li><strong>他社検討の捏造</strong></li>
+        <li><strong>テナントへの立退き示唆</strong>（借地借家法28条の正当事由が必要。不安を煽った時点で案件も会社も終わります）</li>
+      </ul>
+      <p>1戸取るために信用を失うのは、割に合いません。事実だけで十分に売れます。</p>
+    </div>
+  </section>
+
+  <!-- ============ 7 ============ -->
+  <section id="s7">
+    <div class="sec-head">
+      <span class="sec-num">07 / プランB</span>
+      <h2>9月以降：価格改定と、その前にやるべきこと</h2>
+    </div>
+
+    <div class="prose">
+      <p>
+        <strong>プランBは敗戦処理ではありません。</strong>上の転換率想定どおりなら8月着地は3〜5戸で、
+        <strong>残戸をどう料理するかが本番</strong>です。8/31の午後に起案を出せる状態にしておいてください。
+      </p>
+    </div>
+
+    <h3>優先順位1：値引きの前に、賃料を是正する</h3>
+    <div class="prose">
+      <p>
+        現況NOI 3.57％が売れない原因である以上、<strong>価格を下げるより賃料を上げるほうが、売主の手取りが厚くなります。</strong>
+        現況賃料は査定より平均31％低く、102号室は53％、205+206は47％低い。ここは放置されている余地です。
+      </p>
+      <p>
+        8/3に取得する賃貸借契約書8本から<strong>各区画の更新時期を洗い出し、9月以降に更新を迎える区画から順に賃料改定交渉に着手</strong>してください。
+        改定が1件でも決まれば、その区画は価格を下げずに利回りが上がります。
+      </p>
+      <p style="font-size:0.85rem;color:var(--slate)">
+        ※交渉であって一方的な改定ではありません。普通借家か定期借家かで打ち手が変わるため、契約形態の確認が前提です。
+      </p>
+    </div>
+
+    <h3>優先順位2：価格改定は全体一律ではなく、区画別に</h3>
+    <div class="prose">
+      <p>
+        一律値下げは、売れている区画の利益まで捨てます。<strong>売れ残る理由がある区画だけを是正する</strong>のが正しい。
+        売れ残るのは利回りの低い101・203・207です（いずれもNOI 4.6％前後）。ここを<strong>5.0％水準まで是正</strong>します。
+      </p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>9月価格改定案（NOI 5.0％水準への是正・低利回り3区画のみ）</caption>
+        <thead>
+          <tr><th>号室</th><th class="n">現行（8月）</th><th class="n">現行NOI</th><th class="n">改定案（9月）</th><th class="n">改定後NOI</th><th class="n">下げ幅</th><th class="n">下げ率</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>101</td><td class="n">1億2,467万</td><td class="n">4.56%</td><td class="n">1億1,370万</td><td class="n">5.00%</td><td class="n">−1,097万</td><td class="n">−8.8%</td></tr>
+          <tr><td>203</td><td class="n">6,308万</td><td class="n">4.56%</td><td class="n">5,753万</td><td class="n">5.00%</td><td class="n">−555万</td><td class="n">−8.8%</td></tr>
+          <tr><td>207</td><td class="n">9,238万</td><td class="n">4.64%</td><td class="n">8,573万</td><td class="n">5.00%</td><td class="n">−665万</td><td class="n">−7.2%</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>3区画計</td><td class="n">2億8,013万</td><td class="n">—</td><td class="n">2億5,696万</td><td class="n">5.00%</td><td class="n">−2,317万</td><td class="n">−8.3%</td></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="prose">
+      <p>
+        102・103・105・201+202・205+206は<strong>据え置き</strong>。NOI 4.73〜5.61％で、価格が原因では売れていません。
+        売れていない原因が価格でない区画を下げても、粗利が減るだけです。
+      </p>
+      <p>
+        一括については、<strong>9月から交渉ラインの5億9,000万円を「表示価格」に切り替える</strong>。
+        8月中は交渉時のみの隠し玉として使い、9月から公開の値として提示します。これで一括の見え方が変わります。
+      </p>
+    </div>
+
+    <h3>優先順位3：9月から開くチャネル</h3>
+    <div class="cols">
+      <div class="card">
+        <span class="ct">信託銀行・地元信用金庫</span>
+        <p>8月中に種を蒔いておいた先が、9月から動き始めます。特に<strong>地元信金の取引先法人紹介</strong>は、Cパッケージ（101＋201+202＋203／2.8億）の買主として最も現実的な経路です。</p>
+      </div>
+      <div class="card">
+        <span class="ct">買取業者・不動産ファンドへの一括打診</span>
+        <p>価格は落ちますが確実性は高い。<strong>9月末までに1戸も動かなければ、10月にはこの選択肢を卓上に載せる</strong>べきです。判断を遅らせるほど条件は悪くなります。</p>
+      </div>
+      <div class="card">
+        <span class="ct">法人の下期入り needs を突く</span>
+        <p>10月開始の下期に向けて、9月は法人の設備投資・拠点計画が固まる時期です。<strong>自用取得の提案が最も通りやすい月</strong>。8月に断られたテナント・法人へ、9月に再アプローチする価値があります。</p>
+      </div>
+      <div class="card">
+        <span class="ct">DMリストの再利用（ただし電話つきで）</span>
+        <p>9,394社のSランクへ、<strong>DMではなく電話</strong>。8月に捨てたリストは、時間ができた9月なら使えます。書面だけで反響ゼロだったのは手法の問題であって、リストの問題ではありません。</p>
+      </div>
+    </div>
+
+    <div class="note ok">
+      <h4>9月1日の朝に持っているべきもの</h4>
+      <ul>
+        <li>区画別の価格改定 起案書（8/31提出済み）</li>
+        <li>賃貸借契約書8本から抽出した<strong>更新時期一覧と賃料改定の着手順</strong></li>
+        <li>8月の実測転換率（想定値を実測値に置き換えたもの）</li>
+        <li>Cパッケージの打診先リスト（信金・地元法人）</li>
+        <li>8月に断られた全先の<strong>断り理由の一覧</strong>——ここに9月の勝ち筋が全部書いてあります</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <div class="prose">
+      <h3>明日の朝、最初にやること</h3>
+      <p>
+        <strong>サンヨーホームズへの電話1本です。</strong>区分バラ売りの可否と区画別価格の正式承認。
+        ここが取れなければ、この作戦書は1ページも実行できません。逆にここが取れれば、
+        <span class="num">4,150万円</span>という値札を持って現地に立てます。<span class="seal">その値札は、6億991万円という値札とはまったく別の商品です。</span>
+      </p>
+    </div>
+  </section>
+
+</div>
