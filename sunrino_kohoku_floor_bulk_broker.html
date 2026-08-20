@@ -1,0 +1,449 @@
+<title>サンリーノ港北 フロア一括</title>
+
+<style>
+  :root {
+    --paper:#F3F5F4; --surface:#FFFFFF; --surface-2:#EAEEEC;
+    --ink:#161B1A; --slate:#5B6763; --rule:#D8DCDA; --rule-firm:#B4BCB8;
+    --seal:#B8352C; --seal-soft:#F0DEDB;
+    --go:#2E6B4F; --go-soft:#DDEAE2;
+    --warn:#8A6A18; --warn-soft:#F2E8CE;
+    --display:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP","Songti SC",serif;
+    --body:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",YuGothic,"Noto Sans JP",Meiryo,system-ui,sans-serif;
+    --data:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+    --measure:34rem; --wide:58rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:#121615; --surface:#1A1F1E; --surface-2:#232928;
+      --ink:#E4E8E6; --slate:#99A5A1; --rule:#2C3331; --rule-firm:#414A47;
+      --seal:#E4756A; --seal-soft:#3A2320;
+      --go:#6FBE95; --go-soft:#1E2F27;
+      --warn:#D2AC5A; --warn-soft:#2E2718;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:#121615; --surface:#1A1F1E; --surface-2:#232928;
+    --ink:#E4E8E6; --slate:#99A5A1; --rule:#2C3331; --rule-firm:#414A47;
+    --seal:#E4756A; --seal-soft:#3A2320;
+    --go:#6FBE95; --go-soft:#1E2F27;
+    --warn:#D2AC5A; --warn-soft:#2E2718;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--paper); color:var(--ink); font-family:var(--body);
+    font-size:15px; line-height:1.8; margin:0; padding:0 1.25rem 5rem;
+    -webkit-font-smoothing:antialiased; text-size-adjust:100%;
+  }
+  .wrap{max-width:var(--wide); margin:0 auto; display:flex; flex-direction:column; gap:2.75rem;}
+  .prose{max-width:var(--measure);}
+  p{margin:0;}
+  .prose p + p{margin-top:0.85rem;}
+  ul{padding-left:1.1rem; margin:0;}
+  li{margin-bottom:0.3rem;}
+  li:last-child{margin-bottom:0;}
+  .num{font-family:var(--data); font-variant-numeric:tabular-nums;}
+  .seal{color:var(--seal);}
+
+  /* masthead */
+  .mast{display:flex; flex-direction:column; gap:0.85rem; padding:2.75rem 0 1.5rem; border-bottom:2px solid var(--ink);}
+  .eyebrow{
+    font-family:var(--data); font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--seal); display:flex; flex-wrap:wrap; gap:0.3rem 1rem;
+  }
+  h1{
+    font-family:var(--display); font-weight:600; font-size:clamp(1.75rem,4.6vw,2.6rem);
+    line-height:1.26; letter-spacing:0.02em; margin:0; text-wrap:balance;
+  }
+  .sub{max-width:var(--measure); color:var(--slate); font-size:0.92rem;}
+  .idline{
+    font-family:var(--data); font-size:0.73rem; color:var(--slate);
+    display:flex; flex-wrap:wrap; gap:0.2rem 1.4rem; padding-top:0.3rem;
+  }
+
+  /* commission hero */
+  .fee{border:1px solid var(--rule-firm); background:var(--surface);}
+  .fee-cap{
+    font-family:var(--data); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--slate); padding:0.7rem 0.9rem; border-bottom:1px solid var(--rule);
+  }
+  .fee-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(12rem,1fr)); gap:1px; background:var(--rule);}
+  .fee-cell{background:var(--surface); padding:1rem 0.95rem; display:flex; flex-direction:column; gap:0.2rem;}
+  .fee-cell.hi{background:var(--seal-soft);}
+  .fee-cell .lab{font-family:var(--data); font-size:0.68rem; letter-spacing:0.08em; color:var(--slate);}
+  .fee-cell .big{font-family:var(--data); font-size:1.75rem; font-variant-numeric:tabular-nums; line-height:1.2;}
+  .fee-cell.hi .big{color:var(--seal);}
+  .fee-cell .big small{font-size:0.7rem; font-family:var(--body); color:var(--slate);}
+  .fee-cell .foot{font-size:0.74rem; color:var(--slate);}
+  .fee-note{padding:0.7rem 0.9rem; border-top:1px solid var(--rule); font-size:0.8rem; color:var(--slate);}
+
+  /* sections */
+  section{display:flex; flex-direction:column; gap:1.2rem; scroll-margin-top:2rem;}
+  .sec-head{display:flex; flex-direction:column; gap:0.3rem; border-top:1px solid var(--rule-firm); padding-top:1rem;}
+  .sec-num{font-family:var(--data); font-size:0.67rem; letter-spacing:0.16em; color:var(--seal); text-transform:uppercase;}
+  h2{font-family:var(--display); font-weight:600; font-size:clamp(1.3rem,3vw,1.75rem); line-height:1.35; margin:0; letter-spacing:0.02em; text-wrap:balance;}
+  h3{font-family:var(--display); font-weight:600; font-size:1.08rem; margin:0.4rem 0 0; letter-spacing:0.02em;}
+  h4{font-family:var(--body); font-weight:700; font-size:0.8rem; letter-spacing:0.06em; margin:0; color:var(--slate);}
+
+  /* floor product cards */
+  .floors{display:grid; grid-template-columns:repeat(auto-fit,minmax(17rem,1fr)); gap:1rem;}
+  .floor{border:1px solid var(--rule-firm); background:var(--surface); display:flex; flex-direction:column;}
+  .floor-top{padding:0.9rem 1rem; background:var(--ink); color:var(--paper); display:flex; align-items:baseline; gap:0.6rem;}
+  .floor-top .fl{font-family:var(--data); font-size:1.5rem; font-weight:700; line-height:1;}
+  .floor-top .fn{font-family:var(--display); font-size:0.98rem;}
+  .floor-top .fy{margin-left:auto; font-family:var(--data); font-size:0.95rem;}
+  .floor-spec{display:grid; grid-template-columns:auto 1fr; gap:0 0.9rem; padding:0.9rem 1rem; font-size:0.85rem;}
+  .floor-spec dt{color:var(--slate); font-size:0.78rem; padding:0.22rem 0; border-bottom:1px solid var(--rule); white-space:nowrap;}
+  .floor-spec dd{margin:0; padding:0.22rem 0; border-bottom:1px solid var(--rule); font-family:var(--data); font-variant-numeric:tabular-nums; text-align:right;}
+  .floor-spec dt.last, .floor-spec dd.last{border-bottom:none;}
+  .floor-spec dd em{font-style:normal; color:var(--go); font-weight:700;}
+  .floor-pitch{padding:0.85rem 1rem; border-top:1px solid var(--rule-firm); background:var(--surface-2); font-size:0.84rem;}
+  .floor-pitch b{color:var(--seal);}
+
+  /* tables */
+  .tablewrap{overflow-x:auto; border:1px solid var(--rule-firm); background:var(--surface);}
+  table{border-collapse:collapse; width:100%; min-width:38rem; font-size:0.81rem;}
+  caption{caption-side:top; text-align:left; font-family:var(--data); font-size:0.67rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--slate); padding:0.65rem 0.85rem; border-bottom:1px solid var(--rule);}
+  th,td{padding:0.48rem 0.85rem; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top;}
+  thead th{font-size:0.67rem; letter-spacing:0.05em; color:var(--slate); font-weight:700; border-bottom:1px solid var(--rule-firm); white-space:nowrap;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.n,th.n{text-align:right; font-family:var(--data); font-variant-numeric:tabular-nums; white-space:nowrap;}
+  tfoot td{border-top:1px solid var(--rule-firm); font-weight:700; background:var(--surface-2);}
+  tbody tr.sep td{border-top:1px solid var(--rule-firm);}
+
+  /* cards + notes */
+  .cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:1rem;}
+  .card{border:1px solid var(--rule-firm); background:var(--surface); padding:0.9rem 1rem; display:flex; flex-direction:column; gap:0.45rem;}
+  .card .ct{font-family:var(--display); font-weight:600; font-size:0.98rem;}
+  .card p, .card ul{font-size:0.84rem;}
+  .card.acc{border-left:3px solid var(--go);}
+  .note{border-left:3px solid var(--seal); background:var(--surface); padding:0.85rem 1rem; display:flex; flex-direction:column; gap:0.45rem;}
+  .note.warn{border-left-color:var(--warn);}
+  .note.ok{border-left-color:var(--go);}
+  .note h4{color:var(--seal);} .note.warn h4{color:var(--warn);} .note.ok h4{color:var(--go);}
+  .note p, .note ul{font-size:0.85rem;}
+
+  .terms{display:grid; grid-template-columns:auto 1fr; gap:0 1rem; border:1px solid var(--rule-firm); background:var(--surface); padding:0.95rem 1.1rem; font-size:0.86rem;}
+  .terms dt{color:var(--slate); font-size:0.79rem; padding:0.4rem 0; border-bottom:1px solid var(--rule); white-space:nowrap;}
+  .terms dd{margin:0; padding:0.4rem 0; border-bottom:1px solid var(--rule);}
+  .terms dt.last,.terms dd.last{border-bottom:none;}
+
+  .checklist{columns:2; column-gap:2rem; font-size:0.84rem;}
+  .checklist li{break-inside:avoid;}
+  @media (max-width:36rem){ .checklist{columns:1;} }
+
+  footer{border-top:1px solid var(--rule-firm); padding-top:1rem; font-size:0.76rem; color:var(--slate); display:flex; flex-direction:column; gap:0.5rem;}
+
+  a{color:var(--seal);}
+  :focus-visible{outline:2px solid var(--seal); outline-offset:2px;}
+  @media print{ body{background:#fff;} .floors{grid-template-columns:1fr 1fr;} }
+  @media (prefers-reduced-motion:reduce){ *{animation:none!important; transition:none!important;} }
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <div class="eyebrow">
+      <span>仲介業者様向け</span><span>フロア一括販売のご案内</span><span>2026年8月</span>
+    </div>
+    <h1>サンリーノ港北センター北<br>1F／2F フロア一括</h1>
+    <p class="sub">
+      横浜市営地下鉄ブルーライン・グリーンライン「センター北」駅 徒歩5分。全区画テナント入居中のオーナーチェンジを、
+      <strong>フロア単位（各4区画）</strong>でお取り扱いいただけます。
+    </p>
+    <div class="idline">
+      <span>所在／横浜市都筑区中川中央1-39-29</span>
+      <span>RC造・1997年築（新耐震）</span>
+      <span>2026年 大規模改修済</span>
+      <span>売主／サンヨーホームズ株式会社</span>
+    </div>
+  </header>
+
+  <!-- 手数料 -->
+  <div class="fee">
+    <div class="fee-cap">御社の受領手数料（売買代金の3％＋6万円・税別／買主様より満額）</div>
+    <div class="fee-grid">
+      <div class="fee-cell hi">
+        <span class="lab">1F 一括</span>
+        <span class="big">817<small> 万円</small></span>
+        <span class="foot">売買代金 2億7,048万円</span>
+      </div>
+      <div class="fee-cell hi">
+        <span class="lab">2F 一括</span>
+        <span class="big">1,024<small> 万円</small></span>
+        <span class="foot">売買代金 3億3,941万円</span>
+      </div>
+      <div class="fee-cell">
+        <span class="lab">参考／1区画のみ（最小）</span>
+        <span class="big">130<small> 万円</small></span>
+        <span class="foot">売買代金 4,150万円</span>
+      </div>
+    </div>
+    <div class="fee-note">
+      フロア一括1件で、最小区画1戸の <strong class="seal">約6〜8倍</strong> の手数料になります。
+      商談・案内・契約の手間はほぼ変わりません。当社は売主側で受託しており、<strong>両手をいただく形は取りません。片手で結構です。</strong>
+      なお全8区画一括（6億991万円）の場合は1,836万円です。
+    </div>
+  </div>
+
+  <!-- 01 商品概要 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">01 / 商品概要</span>
+      <h2>2つのフロアパッケージ</h2>
+    </div>
+
+    <div class="floors">
+      <div class="floor">
+        <div class="floor-top"><span class="fl">1F</span><span class="fn">路面 4区画</span><span class="fy">4.83%</span></div>
+        <dl class="floor-spec">
+          <dt>販売価格</dt><dd>2億7,048万円</dd>
+          <dt>専有面積</dt><dd>311.57㎡／94.25坪</dd>
+          <dt>坪単価</dt><dd>287.0万円</dd>
+          <dt>区画数</dt><dd>4区画（全戸入居中）</dd>
+          <dt>現況賃料（月・税込）</dt><dd>981,904円</dd>
+          <dt>査定賃料（月・税込）</dt><dd>1,274,900円</dd>
+          <dt>賃料ギャップ</dt><dd><em>+29.8%</em></dd>
+          <dt>現況NOI（税別）</dt><dd>3.72%</dd>
+          <dt class="last">想定NOI（税別）</dt><dd class="last"><em>4.83%</em></dd>
+        </dl>
+        <div class="floor-pitch">
+          <b>路面4区画。</b>美容院・理容室・障がい者サービス・電気通信。
+          駅徒歩5分の1階路面はテナント代替性が高く、退去時の再募集がしやすい構成です。金額は2.7億円と扱いやすい水準。
+        </div>
+      </div>
+
+      <div class="floor">
+        <div class="floor-top"><span class="fl">2F</span><span class="fn">4区画</span><span class="fy">5.15%</span></div>
+        <dl class="floor-spec">
+          <dt>販売価格</dt><dd>3億3,941万円</dd>
+          <dt>専有面積</dt><dd>432.06㎡／130.70坪</dd>
+          <dt>坪単価</dt><dd>259.7万円</dd>
+          <dt>区画数</dt><dd>4区画（うち2区画は2戸一）</dd>
+          <dt>現況賃料（月・税込）</dt><dd>1,290,128円</dd>
+          <dt>査定賃料（月・税込）</dt><dd>1,703,900円</dd>
+          <dt>賃料ギャップ</dt><dd><em>+32.1%</em></dd>
+          <dt>現況NOI（税別）</dt><dd>3.90%</dd>
+          <dt class="last">想定NOI（税別）</dt><dd class="last"><em>5.15%</em></dd>
+        </dl>
+        <div class="floor-pitch">
+          <b>教育・医療・福祉で3区画。</b>学習塾・児童発達支援教室・内科クリニック・駐車場メンテナンス。
+          子育て世帯の多い港北ニュータウン立地と業種構成が合致し、想定NOI 5.15％は1Fを0.32ポイント上回ります。
+        </div>
+      </div>
+    </div>
+
+    <div class="note ok">
+      <h4>この物件の骨格：現況賃料が査定水準を平均31％下回っている</h4>
+      <p>
+        現況NOIは1F 3.72％・2F 3.90％ですが、これは<strong>賃料が市場水準に対して据え置かれてきた結果</strong>であり、
+        建物や立地の弱さではありません。査定賃料まで是正されれば1F 4.83％・2F 5.15％。
+        <strong>賃料是正の余地がそのまま残っている</strong>ことが、この案件の実質的な商品性です。
+        買い上がりではなく賃料の正常化で利回りを取りにいく買主様に向く物件です。
+      </p>
+    </div>
+  </section>
+
+  <!-- 02 明細 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">02 / 区画明細</span>
+      <h2>フロア別レントロール</h2>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>区画別 明細（賃料は月額・税込）</caption>
+        <thead>
+          <tr><th>階</th><th>号室</th><th>業種</th><th class="n">面積㎡</th><th class="n">価格</th><th class="n">現況賃料</th><th class="n">査定賃料</th><th class="n">ギャップ</th><th class="n">想定NOI</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1F</td><td>101</td><td>美容院</td><td class="n">136.40</td><td class="n">1億2,467万</td><td class="n">444,400</td><td class="n">554,400</td><td class="n">+24.8%</td><td class="n">4.56%</td></tr>
+          <tr><td>1F</td><td>102</td><td>障がい者サービス</td><td class="n">59.81</td><td class="n">4,646万</td><td class="n">159,500</td><td class="n">244,200</td><td class="n">+53.1%</td><td class="n">5.39%</td></tr>
+          <tr><td>1F</td><td>103</td><td>理容室</td><td class="n">46.40</td><td class="n">4,150万</td><td class="n">159,104</td><td class="n">191,400</td><td class="n">+20.3%</td><td class="n">4.73%</td></tr>
+          <tr><td>1F</td><td>105</td><td>電気通信</td><td class="n">68.96</td><td class="n">5,785万</td><td class="n">218,900</td><td class="n">284,900</td><td class="n">+30.1%</td><td class="n">5.05%</td></tr>
+          <tr class="sep"><td colspan="3"><strong>1F 合計</strong></td><td class="n"><strong>311.57</strong></td><td class="n"><strong>2億7,048万</strong></td><td class="n"><strong>981,904</strong></td><td class="n"><strong>1,274,900</strong></td><td class="n"><strong>+29.8%</strong></td><td class="n"><strong>4.83%</strong></td></tr>
+          <tr class="sep"><td>2F</td><td>201+202</td><td>学習塾（2戸一）</td><td class="n">132.00</td><td class="n">9,548万</td><td class="n">386,148</td><td class="n">521,400</td><td class="n">+35.0%</td><td class="n">5.60%</td></tr>
+          <tr><td>2F</td><td>203</td><td>駐車場メンテナンス</td><td class="n">70.95</td><td class="n">6,308万</td><td class="n">235,400</td><td class="n">280,500</td><td class="n">+19.2%</td><td class="n">4.56%</td></tr>
+          <tr><td>2F</td><td>205+206</td><td>児童発達支援教室（2戸一）</td><td class="n">122.80</td><td class="n">8,847万</td><td class="n">328,900</td><td class="n">484,000</td><td class="n">+47.2%</td><td class="n">5.61%</td></tr>
+          <tr><td>2F</td><td>207</td><td>内科クリニック</td><td class="n">106.31</td><td class="n">9,238万</td><td class="n">339,680</td><td class="n">418,000</td><td class="n">+23.1%</td><td class="n">4.64%</td></tr>
+          <tr class="sep"><td colspan="3"><strong>2F 合計</strong></td><td class="n"><strong>432.06</strong></td><td class="n"><strong>3億3,941万</strong></td><td class="n"><strong>1,290,128</strong></td><td class="n"><strong>1,703,900</strong></td><td class="n"><strong>+32.1%</strong></td><td class="n"><strong>5.15%</strong></td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td colspan="3">全8区画</td><td class="n">743.63</td><td class="n">6億991万</td><td class="n">2,272,032</td><td class="n">2,978,800</td><td class="n">+31.1%</td><td class="n">4.87%</td></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="note warn">
+      <h4>テナントの定着性について</h4>
+      <p>
+        2Fの<strong>内科クリニック（保険医療機関）</strong>、<strong>児童発達支援教室</strong>、1Fの<strong>障がい者サービス</strong>は、
+        いずれも事業所の所在地に紐づく行政の指定・登録を受けて運営される業種です。
+        移転には所在地変更の手続と利用者への影響を伴うため、<strong>一般の物販・飲食に比べて賃借人の定着性が構造的に高い</strong>点は、
+        買主様への説明材料としてお使いいただけます。
+      </p>
+      <p>
+        また児童発達支援・障がい者サービスは公的給付を主な収入源とするため、景気変動の影響を受けにくい業種とされます。
+      </p>
+    </div>
+  </section>
+
+  <!-- 03 なぜフロア単位 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">03 / 提案の骨子</span>
+      <h2>なぜ「区画バラ」ではなく「フロア一括」か</h2>
+    </div>
+
+    <div class="cols">
+      <div class="card acc">
+        <span class="ct">フロア全体の動線を一体で使える</span>
+        <p>同一フロア4区画を押さえることで、共用動線・サイン計画・テナント配置をフロア単位で設計できます。医療モール化、スクール系の集積など、<strong>用途を束ねた運用</strong>が可能になります。</p>
+      </div>
+      <div class="card acc">
+        <span class="ct">賃料是正の交渉力が変わる</span>
+        <p>1区画のみの所有者と、フロア4区画の所有者では、賃料改定交渉の立ち位置が違います。<strong>+30％の賃料ギャップを取りにいくなら、まとまった単位で持つほうが実行力が出ます。</strong></p>
+      </div>
+      <div class="card acc">
+        <span class="ct">商談・契約・決済が1回で済む</span>
+        <p>売買契約は1本にまとめられます。4区画を個別に4回検討・交渉するより、買主様の意思決定コストが大幅に下がります。</p>
+      </div>
+      <div class="card acc">
+        <span class="ct">出口が確保される</span>
+        <p>フロア一括で保有していれば、売却時も<strong>フロア一括のまま出せる</strong>ほか、区画ごとの分割売却も選べます。取得単位が細かいほど出口は狭くなります。</p>
+      </div>
+      <div class="card acc">
+        <span class="ct">御社の手数料が6〜8倍</span>
+        <p>案内も契約も1回。<strong>1件あたりの生産性が最も高い切り方</strong>です。1F 817万円、2F 1,024万円（いずれも税別）。</p>
+      </div>
+      <div class="card acc">
+        <span class="ct">1棟一括より現実的な金額</span>
+        <p>6億991万円の全棟一括に対し、フロア単位なら2.7億／3.4億。<strong>個人資産家・資産管理会社・医療法人の射程</strong>に入ります。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 ターゲット -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">04 / ご提案先</span>
+      <h2>どなたに当てていただくか</h2>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>フロア別 想定買主像</caption>
+        <thead><tr><th>フロア</th><th>想定買主</th><th>刺さるポイント</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>1F</strong><br>2億7,048万</td>
+            <td>地元の資産家・地主（相続対策）／医療法人・調剤薬局／法人成りされている高所得の個人</td>
+            <td>駅徒歩5分の<strong>1階路面</strong>という希少性。相続時の評価と、退去時の再募集のしやすさ。金額が扱いやすく、融資も組みやすい水準。</td>
+          </tr>
+          <tr>
+            <td><strong>2F</strong><br>3億3,941万</td>
+            <td>利回り重視の資産管理会社・投資法人／医療モール展開を検討中の事業者／教育・福祉系の運営法人</td>
+            <td>想定NOI <strong>5.15％</strong>。内科クリニックが既に入居しており<strong>医療モール化の起点</strong>になる。テナント業種が公的指定・公的給付ベースで安定。</td>
+          </tr>
+          <tr>
+            <td><strong>1F＋2F</strong><br>6億991万</td>
+            <td>不動産会社の自己勘定／ファンド／複数法人での共同取得</td>
+            <td>建物の店舗事務所部分を丸ごと押さえられる。賃料是正のポテンシャルが全区画に及ぶ。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <h4>買主様が投資家でなくても構いません</h4>
+      <p>
+        フロア内の1区画を<strong>自社で使い、残りを賃貸に回す</strong>形も可能です。
+        たとえば2Fであれば、医療法人が207号室（106.31㎡）を自院として使い、残る3区画の賃料収入を取得原価に充てる、という組み立てができます。
+        <strong>自用と収益を兼ねる買主様は、純投資の買主様より利回りに対する要求水準が緩やかです。</strong>この層は狙い目です。
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 取扱条件 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">05 / 取扱条件</span>
+      <h2>お取り扱いにあたって</h2>
+    </div>
+
+    <dl class="terms">
+      <dt>売主</dt><dd>サンヨーホームズ株式会社</dd>
+      <dt>販売単位</dt><dd>1Fフロア一括（4区画）／2Fフロア一括（4区画）／全8区画一括。区画単位でのお取り扱いも可。</dd>
+      <dt>仲介手数料</dt><dd><strong>売買代金の3％＋6万円（税別）を、買主様より御社にて満額申し受けいただけます。</strong>当社は売主側で受託しており、両手はいただきません。</dd>
+      <dt>現況</dt><dd>全区画テナント入居中（オーナーチェンジ）。敷金・保証金は売買代金決済時に承継。</dd>
+      <dt>ご案内</dt><dd>外観・共用部・周辺は随時ご案内可能。<strong>室内はテナント営業中のため事前調整が必要です。</strong>ご一報いただければ2〜3営業日で段取りいたします。</dd>
+      <dt>お申込</dt><dd>買付証明書をご提出ください。書式は当社より提供いたします。</dd>
+      <dt>決済時期</dt><dd>ご相談に応じます。融資特約付きでのお申込も承ります。</dd>
+      <dt class="last">価格交渉</dt><dd class="last">お客様の具体的なご検討状況をお聞かせいただければ、売主と協議のうえご回答いたします。</dd>
+    </dl>
+
+    <h3>ご提供資料</h3>
+    <div class="prose">
+      <p>下記はご請求いただき次第、当社よりご提供いたします。買主様のご検討段階に応じて順次お出しします。</p>
+    </div>
+    <ul class="checklist">
+      <li>各区画の平面図・建物図面</li>
+      <li>レントロール（契約期間・更新時期・敷金）</li>
+      <li>賃貸借契約書の写し（各区画）</li>
+      <li>登記事項証明書</li>
+      <li>管理規約・使用細則</li>
+      <li>区画別の管理費・修繕積立金</li>
+      <li>区画別の固定資産税・都市計画税</li>
+      <li>長期修繕計画・修繕積立金の状況</li>
+      <li>2026年 大規模改修の工事内容</li>
+      <li>管理組合総会議事録</li>
+      <li>消防用設備等点検報告書</li>
+      <li>周辺賃料事例（査定賃料の根拠）</li>
+    </ul>
+
+    <div class="note warn">
+      <h4>買主様のご検討にあたりご確認いただきたい事項</h4>
+      <p>
+        本物件は共同住宅を含む一棟の建物の1・2階部分（店舗事務所）です。ご検討の際は、あわせて以下をご確認ください。
+        いずれも当社より資料をご提供いたします。
+      </p>
+      <ul>
+        <li><strong>管理規約上の用途制限</strong>の有無（将来のテナント業種変更に関わります）</li>
+        <li><strong>一部共用部分の範囲と費用負担区分</strong>（店舗部分と住宅部分の区分経理の有無）</li>
+        <li><strong>管理組合における議決権割合</strong></li>
+        <li><strong>登記上の専有部分の個数</strong>（2戸一の2区画は、登記上は各2戸の可能性があります。登記費用・登録免許税の算定に関わります）</li>
+        <li>各賃貸借契約が<strong>普通借家か定期借家か</strong>、および各更新時期</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 06 連絡先 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">06 / お問合せ</span>
+      <h2>ご連絡先</h2>
+    </div>
+    <div class="prose">
+      <p>
+        資料請求・ご案内のご依頼・価格のご相談は、下記まで直接ご連絡ください。
+        <strong>お客様のお名前を伏せたままのご相談で結構です。</strong>物件を特定される前段階のご照会にも対応いたします。
+      </p>
+      <p>
+        担当：中山<br>
+        ※お問合せいただいた御社を、当該お客様の窓口として登録いたします。
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      本資料は仲介業者様向けの参考資料です。記載の賃料・利回りは現況および査定に基づく数値であり、将来の収益を保証するものではありません。
+      査定賃料は当社の査定によるもので、実際の改定は賃借人との個別協議によります。
+      想定NOIは満室想定の年間賃料（税別）から一定の経費を控除して算出しており、公租公課・管理費・修繕積立金等の実額により変動します。
+      価格・条件は予告なく変更される場合があり、最終条件は売買契約書によるものとします。記載内容に相違がある場合は売主提示条件が優先します。
+    </p>
+    <p>サンリーノ港北センター北 1・2F 区分店舗事務所／2026年8月版</p>
+  </footer>
+
+</div>
