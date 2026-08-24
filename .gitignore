@@ -2,3 +2,6 @@ node_modules/
 package-lock.json
 package.json
 sheet*.png
+slide-*.jpg
+myosoku.*
+t.pptx
