@@ -1,0 +1,397 @@
+<title>サンリーノ港北 販売図面</title>
+
+<style>
+  :root{
+    --paper:#FFFFFF; --board:#E7EBE9; --panel:#F4F6F5; --band:#ECEFEE;
+    --ink:#161B1A; --slate:#5B6763; --mute:#8A9490;
+    --rule:#C9CFCC; --rule-firm:#9AA4A0;
+    --seal:#B8352C; --seal-soft:#F5E3E0;
+    --go:#2E6B4F; --go-soft:#E3EFE8;
+    --display:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;
+    --body:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",YuGothic,"Noto Sans JP",Meiryo,system-ui,sans-serif;
+    --data:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){ --board:#0E1211; } }
+  :root[data-theme="dark"]{ --board:#0E1211; }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--board); font-family:var(--body); color:var(--ink); -webkit-font-smoothing:antialiased;}
+  .stage{display:flex; flex-direction:column; align-items:center; gap:10px; padding:14px 10px 40px; overflow-x:auto;}
+  .hint{font-family:var(--data); font-size:10px; letter-spacing:.1em; color:var(--mute); text-align:center; max-width:60ch; line-height:1.7;}
+
+  /* ============ A4 LANDSCAPE 297 x 210mm ============ */
+  .sheet{
+    width:297mm; height:210mm; flex:none; position:relative;
+    background:var(--paper); color:var(--ink);
+    display:grid; grid-template-rows:1fr 30mm;
+    box-shadow:0 2px 14px rgba(0,0,0,.22);
+  }
+  .sheet + .sheet{ margin-top:4px; }
+  .main{padding:7mm 7mm 0; display:grid; grid-template-rows:20mm 4mm 1fr;}
+
+  /* ---- header ---- */
+  .head{display:flex; align-items:flex-end; gap:6mm; border-bottom:.7mm solid var(--ink); padding-bottom:1.8mm;}
+  .head .eyebrow{font-family:var(--data); font-size:6pt; letter-spacing:.18em; color:var(--seal); text-transform:uppercase;}
+  .head h1{font-family:var(--display); font-weight:600; font-size:16pt; line-height:1.14; letter-spacing:.02em;}
+  .head h1 .fl{color:var(--seal);}
+  .head .loc{margin-left:auto; text-align:right; font-size:7.4pt; line-height:1.55; color:var(--slate);}
+  .head .loc b{color:var(--ink); font-size:8.4pt;}
+
+  .cols{display:grid; grid-template-columns:130mm 5mm 148mm;}
+  .colL{grid-column:1; display:grid; grid-template-rows:100mm 4mm 1fr;}
+  .colR{grid-column:3; display:grid; grid-template-rows:30mm 3mm 34mm 3mm 47mm 3mm 1fr;}
+
+  /* ---- image slots ---- */
+  .slot{border:.4mm dashed var(--rule-firm); background:var(--panel); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;}
+  .slot-img{width:100%; height:100%; object-fit:contain; display:block;}
+  .slot-empty{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.8mm; text-align:center; padding:4mm;}
+  .slot-empty .st{font-family:var(--display); font-size:12pt; font-weight:600; color:var(--slate);}
+  .slot-empty .sd{font-family:var(--data); font-size:6.4pt; line-height:1.65; color:var(--mute);}
+  .slot-tag{position:absolute; top:0; left:0; background:var(--ink); color:var(--paper); font-family:var(--data); font-size:5.8pt; letter-spacing:.12em; padding:.9mm 2.4mm;}
+
+  /* ---- price head ---- */
+  .price{border:.35mm solid var(--ink); display:grid; grid-template-columns:1.5fr 1fr 1fr;}
+  .price .c{padding:1.8mm 2.6mm; display:flex; flex-direction:column; justify-content:center; gap:.4mm; border-right:.25mm solid var(--rule);}
+  .price .c:last-child{border-right:none;}
+  .price .c.main{background:var(--seal-soft);}
+  .price .lab{font-family:var(--data); font-size:5.8pt; letter-spacing:.1em; color:var(--slate);}
+  .price .big{font-family:var(--data); font-size:19pt; font-weight:700; line-height:1; font-variant-numeric:tabular-nums; color:var(--seal);}
+  .price .big span{font-size:8pt; font-weight:400; color:var(--slate);}
+  .price .mid{font-family:var(--data); font-size:14pt; font-weight:700; line-height:1; font-variant-numeric:tabular-nums;}
+  .price .mid em{font-style:normal; font-size:7pt; font-weight:400; color:var(--slate);}
+  .price .sub{font-family:var(--data); font-size:5.8pt; color:var(--slate);}
+
+  /* ---- spec ---- */
+  .spec{border:.35mm solid var(--rule-firm); display:grid; grid-template-columns:1fr 1fr; }
+  .spec dl{display:grid; grid-template-columns:auto 1fr; gap:0 2mm; padding:1.6mm 2.6mm; align-content:center;}
+  .spec dl:first-child{border-right:.25mm solid var(--rule);}
+  .spec dt{font-size:6.4pt; color:var(--slate); line-height:1.85; white-space:nowrap;}
+  .spec dd{font-family:var(--data); font-size:7pt; text-align:right; font-variant-numeric:tabular-nums; line-height:1.85;}
+  .spec dd em{font-style:normal; color:var(--go); font-weight:700;}
+
+  /* ---- rentroll ---- */
+  .rr{border:.35mm solid var(--rule-firm); display:flex; flex-direction:column; overflow:hidden;}
+  .rr-cap{font-family:var(--data); font-size:5.8pt; letter-spacing:.1em; color:var(--slate); padding:1.2mm 2.6mm; border-bottom:.25mm solid var(--rule); text-transform:uppercase;}
+  table{border-collapse:collapse; width:100%; font-size:7pt; flex:1;}
+  th,td{padding:1mm 2.6mm; text-align:left; border-bottom:.2mm solid var(--rule); line-height:1.4;}
+  thead th{font-size:5.8pt; color:var(--slate); font-weight:700; border-bottom:.3mm solid var(--rule-firm); white-space:nowrap;}
+  td.n,th.n{text-align:right; font-family:var(--data); font-variant-numeric:tabular-nums; white-space:nowrap;}
+  tr.tot td{background:var(--panel); font-weight:700; border-top:.3mm solid var(--rule-firm); border-bottom:none;}
+
+  /* ---- pitch + disclaimer ---- */
+  .foot{display:flex; flex-direction:column; gap:1.4mm; justify-content:space-between;}
+  .pitch{border-left:.7mm solid var(--seal); background:var(--panel); padding:1.6mm 2.6mm; font-size:6.8pt; line-height:1.5;}
+  .pitch b{color:var(--seal);}
+  .dis{font-size:5.2pt; line-height:1.35; color:var(--mute);}
+
+  /* ---- bottom band (30mm) ---- */
+  .band{
+    position:relative; background:var(--band); border-top:.3mm dashed var(--rule-firm);
+    padding:3.4mm 7mm 0; display:flex; align-items:flex-start; gap:8mm;
+  }
+  .band .cut{
+    position:absolute; top:-2.2mm; left:7mm; font-family:var(--data); font-size:5.4pt;
+    letter-spacing:.14em; color:var(--mute); background:var(--paper); padding:0 1.6mm;
+  }
+  .band .blk{display:flex; flex-direction:column; gap:.6mm;}
+  .band .lab{font-family:var(--data); font-size:5.6pt; letter-spacing:.12em; color:var(--slate);}
+  .band .co{font-family:var(--display); font-size:11pt; font-weight:600; line-height:1.2;}
+  .band .ln{font-size:6.6pt; line-height:1.5; color:var(--slate);}
+  .band .ln b{color:var(--ink);}
+  .band .right{margin-left:auto; text-align:right;}
+  .band .note{font-size:5.6pt; color:var(--mute); line-height:1.4; max-width:70mm;}
+
+  /* ---- screen scaling ---- */
+  @media (max-width:1220px){ .sheet{zoom:.82;} }
+  @media (max-width:1010px){ .sheet{zoom:.66;} }
+  @media (max-width:820px){ .sheet{zoom:.5;} }
+  @media (max-width:640px){ .sheet{zoom:.38;} }
+
+  @page{ size:A4 landscape; margin:0; }
+  @media print{
+    body{background:#fff;}
+    .stage{padding:0; gap:0; overflow:visible;}
+    .hint{display:none;}
+    .sheet{zoom:1; box-shadow:none; margin:0; break-inside:avoid; page-break-inside:avoid;}
+    .sheet + .sheet{ break-before:page; page-break-before:always; margin-top:0; }
+  }
+</style>
+
+<div class="stage">
+  <p class="hint">
+    A4横 ／ 1F・2F 各1枚 ／ 印刷は A4・横・余白なし・背景グラフィックON<br>
+    下30mmは元付情報欄です。御社のラベルを貼付、または裁断のうえお客様へお渡しください。
+  </p>
+
+  <!-- ══════════════════════ 1F ══════════════════════ -->
+  <div class="sheet">
+    <div class="main">
+
+      <header class="head">
+        <div>
+          <div class="eyebrow">収益不動産のご案内 ／ フロア一括</div>
+          <h1>サンリーノ港北センター北　<span class="fl">1階</span> 店舗一括（4区画）</h1>
+        </div>
+        <div class="loc">
+          <b>横浜市営地下鉄「センター北」駅 徒歩5分</b><br>
+          横浜市都筑区中川中央1-39-29 ／ RC造 地上◯階建の1階部分<br>
+          1997年築（新耐震基準）・2026年 大規模改修済 ／ 全4区画 賃貸中
+        </div>
+      </header>
+
+      <div></div>
+
+      <div class="cols">
+        <div class="colL">
+          <!-- 図面を入れる場合、下の <div class="slot-empty">…</div> を
+               <img class="slot-img" src="1f_zumen.png" alt="1F区画配置図"> に差し替え -->
+          <div class="slot">
+            <span class="slot-tag">1F 区画配置図</span>
+            <div class="slot-empty">
+              <span class="st">1階 区画配置図</span>
+              <span class="sd">
+                仕上がり W130 × H100mm ／ 推奨 1540 × 1180px 以上<br>
+                号室・面積・エントランス位置を明記
+              </span>
+            </div>
+          </div>
+
+          <div></div>
+
+          <!-- 案内図を入れる場合、下の <div class="slot-empty">…</div> を
+               <img class="slot-img" src="annaizu.png" alt="現地案内図"> に差し替え -->
+          <div class="slot">
+            <span class="slot-tag">現地案内図</span>
+            <div class="slot-empty">
+              <span class="st">現地案内図</span>
+              <span class="sd">仕上がり W130 × H45mm ／ 推奨 1540 × 530px 以上　センター北駅からの徒歩動線</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="colR">
+          <div class="price">
+            <div class="c main">
+              <span class="lab">販売価格（1階一括・税込）</span>
+              <span class="big">2億7,048<span> 万円</span></span>
+              <span class="sub">4区画 一括／オーナーチェンジ</span>
+            </div>
+            <div class="c">
+              <span class="lab">想定利回り（税別）</span>
+              <span class="mid">4.83<em>％ NOI</em></span>
+              <span class="sub">表面 5.14％／査定賃料ベース</span>
+            </div>
+            <div class="c">
+              <span class="lab">現況利回り（税別）</span>
+              <span class="mid">3.72<em>％ NOI</em></span>
+              <span class="sub">表面 3.96％／現行賃料ベース</span>
+            </div>
+          </div>
+
+          <div></div>
+
+          <div class="spec">
+            <dl>
+              <dt>専有面積</dt><dd>311.57㎡</dd>
+              <dt>　</dt><dd>94.25坪</dd>
+              <dt>坪単価</dt><dd>287.0万円</dd>
+              <dt>区画数</dt><dd>4区画（全区画賃貸中）</dd>
+            </dl>
+            <dl>
+              <dt>現行賃料（月・税込）</dt><dd>981,904円</dd>
+              <dt>査定賃料（月・税込）</dt><dd>1,274,900円</dd>
+              <dt>差額</dt><dd><em>+292,996円</em></dd>
+              <dt>査定賃料 年額（税込）</dt><dd>15,298,800円</dd>
+            </dl>
+          </div>
+
+          <div></div>
+
+          <div class="rr">
+            <div class="rr-cap">賃貸状況 ／ 賃料は月額・税込</div>
+            <table>
+              <thead><tr><th>号室</th><th>業種</th><th class="n">面積㎡</th><th class="n">坪</th><th class="n">現行賃料</th><th class="n">査定賃料</th></tr></thead>
+              <tbody>
+                <tr><td>101</td><td>美容院</td><td class="n">136.40</td><td class="n">41.26</td><td class="n">444,400</td><td class="n">554,400</td></tr>
+                <tr><td>102</td><td>障がい者サービス</td><td class="n">59.81</td><td class="n">18.09</td><td class="n">159,500</td><td class="n">244,200</td></tr>
+                <tr><td>103</td><td>理容室</td><td class="n">46.40</td><td class="n">14.04</td><td class="n">159,104</td><td class="n">191,400</td></tr>
+                <tr><td>105</td><td>電気通信</td><td class="n">68.96</td><td class="n">20.86</td><td class="n">218,900</td><td class="n">284,900</td></tr>
+                <tr class="tot"><td colspan="2">合計 4区画</td><td class="n">311.57</td><td class="n">94.25</td><td class="n">981,904</td><td class="n">1,274,900</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div></div>
+
+          <div class="foot">
+            <p class="pitch">
+              <b>駅徒歩5分の1階路面4区画。</b>美容院・理容室・障がい者サービス・電気通信と、いずれも地域密着型の生活サービス業種で構成されています。
+              1階路面はテナントの代替性が高く、退去時の再募集がしやすい構成です。
+              <b>現行賃料は当社査定水準を約30％下回っており</b>、賃料の是正余地が残されています。
+            </p>
+            <p class="dis">
+              ※査定賃料は当社の査定によるもので、実際の賃料改定は賃借人との個別協議によります。想定利回り（NOI）は満室想定の年間賃料（税別）から一定の経費を控除して算出しており、公租公課・管理費・修繕積立金等の実額により変動します。将来の収益を保証するものではありません。表面利回りは経費控除前の数値です。別途、管理費・修繕積立金・公租公課および取得時諸費用が必要です。価格・条件は予告なく変更される場合があり、最終条件は売買契約書によります。本物件は共同住宅を含む一棟の建物の一部（区分所有）です。管理規約上の用途制限、一部共用部分の負担区分等は別途資料にてご確認ください。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 下30mm 元付情報欄 ── -->
+    <div class="band">
+      <span class="cut">✂ ── この線から下は元付情報欄です ──</span>
+      <div class="blk">
+        <span class="lab">売主</span>
+        <span class="co">サンヨーホームズ株式会社</span>
+        <span class="ln">取引態様：<b>売主</b>　／　物件番号：SNK-1F-2608</span>
+      </div>
+      <div class="blk">
+        <span class="lab">本件お問合せ先</span>
+        <span class="ln"><b>担当　中山</b></span>
+        <span class="ln">TEL　　　　　　　　　　／　E-mail</span>
+      </div>
+      <div class="blk right">
+        <span class="lab">業者様へ</span>
+        <span class="note">
+          本欄に御社情報のラベルを貼付、または裁断のうえお客様へお渡しください。<br>
+          室内のご内覧はテナント営業中のため事前調整（2〜3営業日）が必要です。
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ 2F ══════════════════════ -->
+  <div class="sheet">
+    <div class="main">
+
+      <header class="head">
+        <div>
+          <div class="eyebrow">収益不動産のご案内 ／ フロア一括</div>
+          <h1>サンリーノ港北センター北　<span class="fl">2階</span> 事務所一括（4区画）</h1>
+        </div>
+        <div class="loc">
+          <b>横浜市営地下鉄「センター北」駅 徒歩5分</b><br>
+          横浜市都筑区中川中央1-39-29 ／ RC造 地上◯階建の2階部分<br>
+          1997年築（新耐震基準）・2026年 大規模改修済 ／ 全4区画 賃貸中
+        </div>
+      </header>
+
+      <div></div>
+
+      <div class="cols">
+        <div class="colL">
+          <!-- 図面を入れる場合、下の <div class="slot-empty">…</div> を
+               <img class="slot-img" src="2f_zumen.png" alt="2F区画配置図"> に差し替え -->
+          <div class="slot">
+            <span class="slot-tag">2F 区画配置図</span>
+            <div class="slot-empty">
+              <span class="st">2階 区画配置図</span>
+              <span class="sd">
+                仕上がり W130 × H100mm ／ 推奨 1540 × 1180px 以上<br>
+                号室・面積・2戸一区画（201+202／205+206）の別を明記
+              </span>
+            </div>
+          </div>
+
+          <div></div>
+
+          <div class="slot">
+            <span class="slot-tag">現地案内図</span>
+            <div class="slot-empty">
+              <span class="st">現地案内図</span>
+              <span class="sd">仕上がり W130 × H45mm ／ 推奨 1540 × 530px 以上　センター北駅からの徒歩動線</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="colR">
+          <div class="price">
+            <div class="c main">
+              <span class="lab">販売価格（2階一括・税込）</span>
+              <span class="big">3億3,941<span> 万円</span></span>
+              <span class="sub">4区画 一括／オーナーチェンジ</span>
+            </div>
+            <div class="c">
+              <span class="lab">想定利回り（税別）</span>
+              <span class="mid">5.15<em>％ NOI</em></span>
+              <span class="sub">表面 5.48％／査定賃料ベース</span>
+            </div>
+            <div class="c">
+              <span class="lab">現況利回り（税別）</span>
+              <span class="mid">3.90<em>％ NOI</em></span>
+              <span class="sub">表面 4.15％／現行賃料ベース</span>
+            </div>
+          </div>
+
+          <div></div>
+
+          <div class="spec">
+            <dl>
+              <dt>専有面積</dt><dd>432.06㎡</dd>
+              <dt>　</dt><dd>130.70坪</dd>
+              <dt>坪単価</dt><dd>259.7万円</dd>
+              <dt>区画数</dt><dd>4区画（全区画賃貸中）</dd>
+            </dl>
+            <dl>
+              <dt>現行賃料（月・税込）</dt><dd>1,290,128円</dd>
+              <dt>査定賃料（月・税込）</dt><dd>1,703,900円</dd>
+              <dt>差額</dt><dd><em>+413,772円</em></dd>
+              <dt>査定賃料 年額（税込）</dt><dd>20,446,800円</dd>
+            </dl>
+          </div>
+
+          <div></div>
+
+          <div class="rr">
+            <div class="rr-cap">賃貸状況 ／ 賃料は月額・税込 ／ 201+202・205+206 は2区画を1区画として賃貸中</div>
+            <table>
+              <thead><tr><th>号室</th><th>業種</th><th class="n">面積㎡</th><th class="n">坪</th><th class="n">現行賃料</th><th class="n">査定賃料</th></tr></thead>
+              <tbody>
+                <tr><td>201+202</td><td>学習塾</td><td class="n">132.00</td><td class="n">39.93</td><td class="n">386,148</td><td class="n">521,400</td></tr>
+                <tr><td>203</td><td>駐車場メンテナンス</td><td class="n">70.95</td><td class="n">21.46</td><td class="n">235,400</td><td class="n">280,500</td></tr>
+                <tr><td>205+206</td><td>児童発達支援教室</td><td class="n">122.80</td><td class="n">37.15</td><td class="n">328,900</td><td class="n">484,000</td></tr>
+                <tr><td>207</td><td>内科クリニック</td><td class="n">106.31</td><td class="n">32.16</td><td class="n">339,680</td><td class="n">418,000</td></tr>
+                <tr class="tot"><td colspan="2">合計 4区画</td><td class="n">432.06</td><td class="n">130.70</td><td class="n">1,290,128</td><td class="n">1,703,900</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div></div>
+
+          <div class="foot">
+            <p class="pitch">
+              <b>教育・医療・福祉で3区画。</b>学習塾・児童発達支援教室・内科クリニック・駐車場メンテナンスで構成され、子育て世帯の多い港北ニュータウンの地域需要と合致しています。
+              <b>内科クリニック・児童発達支援教室は所在地に紐づく行政の指定を受けて運営される業種のため、賃借人の定着性が構造的に高い構成です。</b>
+              現行賃料は当社査定水準を約32％下回っており、賃料の是正余地が残されています。
+            </p>
+            <p class="dis">
+              ※査定賃料は当社の査定によるもので、実際の賃料改定は賃借人との個別協議によります。想定利回り（NOI）は満室想定の年間賃料（税別）から一定の経費を控除して算出しており、公租公課・管理費・修繕積立金等の実額により変動します。将来の収益を保証するものではありません。表面利回りは経費控除前の数値です。別途、管理費・修繕積立金・公租公課および取得時諸費用が必要です。価格・条件は予告なく変更される場合があり、最終条件は売買契約書によります。本物件は共同住宅を含む一棟の建物の一部（区分所有）です。管理規約上の用途制限、一部共用部分の負担区分、および201+202・205+206の登記上の専有部分の個数については別途資料にてご確認ください。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="band">
+      <span class="cut">✂ ── この線から下は元付情報欄です ──</span>
+      <div class="blk">
+        <span class="lab">売主</span>
+        <span class="co">サンヨーホームズ株式会社</span>
+        <span class="ln">取引態様：<b>売主</b>　／　物件番号：SNK-2F-2608</span>
+      </div>
+      <div class="blk">
+        <span class="lab">本件お問合せ先</span>
+        <span class="ln"><b>担当　中山</b></span>
+        <span class="ln">TEL　　　　　　　　　　／　E-mail</span>
+      </div>
+      <div class="blk right">
+        <span class="lab">業者様へ</span>
+        <span class="note">
+          本欄に御社情報のラベルを貼付、または裁断のうえお客様へお渡しください。<br>
+          室内のご内覧はテナント営業中のため事前調整（2〜3営業日）が必要です。
+        </span>
+      </div>
+    </div>
+  </div>
+
+</div>
