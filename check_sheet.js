@@ -11,6 +11,12 @@ const file=process.argv[2]||'sunrino_kohoku_floor_myosoku.html';
     const mm=p=>(p*25.4/96).toFixed(1); const r=[]; let bad=0; const small=[];
     document.querySelectorAll('.sheet').forEach((sh,i)=>{
       const sr=sh.getBoundingClientRect(), hd=sh.querySelector('.head'), lc=sh.querySelector('.loc');
+      const mn=sh.querySelector('.main');
+      if(mn){const mb=mn.getBoundingClientRect().bottom;
+        mn.querySelectorAll('*').forEach(el=>{
+          const rc=el.getBoundingClientRect(); if(!rc.width||!rc.height) return;
+          if(rc.bottom>mb+0.5){bad++;r.push('S'+(i+1)+' .'+String(el.className).split(' ')[0]+' が帯に食い込み '+mm(rc.bottom-mb));}
+        });}
       if(hd&&lc){const hs=getComputedStyle(hd);
         const lt=hd.getBoundingClientRect().bottom-parseFloat(hs.borderBottomWidth)-parseFloat(hs.paddingBottom);
         if(lc.getBoundingClientRect().bottom>lt+0.5){bad++;r.push('S'+(i+1)+' loc罫線重なり');}}
