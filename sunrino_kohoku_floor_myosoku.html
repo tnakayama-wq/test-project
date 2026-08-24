@@ -3,10 +3,9 @@
 <style>
   /* ─────────────────────────────────────────────
      可読性の下限（買主は50〜70代を想定・老眼前提）
-       価格 26pt ／ 利回り 20pt ／ 見出し 20pt
-       本文・表 10pt ／ ラベル 8pt ／ 免責 7pt
-     これより小さい文字を追加しないこと。
-     入らない場合は文字を縮めず、内容を削ること。
+       読ませる文字はすべて 12pt 以上。
+       価格 26pt ／ 利回り 20pt ／ 見出し 21pt ／ 本文・表・ラベル 12pt
+       例外は免責文（5.2pt）のみ。読ませる文ではなく体裁として置く。
      ───────────────────────────────────────────── */
   :root{
     --paper:#FFFFFF; --board:#E7EBE9; --panel:#F2F5F4; --band:#E9EDEB;
@@ -34,19 +33,19 @@
     box-shadow:0 2px 14px rgba(0,0,0,.22);
   }
   .sheet + .sheet{ margin-top:4px; }
-  .main{padding:7mm 7mm 0; display:grid; grid-template-rows:22mm 4mm 1fr;}
+  .main{padding:7mm 7mm 0; display:grid; grid-template-rows:21mm 3mm 1fr;}
 
   /* ---- header ---- */
-  .head{display:flex; align-items:flex-end; gap:6mm; border-bottom:.8mm solid var(--ink); padding-bottom:2mm;}
-  .head .eyebrow{font-family:var(--data); font-size:8pt; letter-spacing:.16em; color:var(--seal);}
-  .head h1{font-family:var(--display); font-weight:600; font-size:21pt; line-height:1.16; letter-spacing:.01em; margin-top:.6mm;}
+  .head{display:flex; flex-direction:column; gap:.6mm; border-bottom:.8mm solid var(--ink); padding-bottom:1.2mm; justify-content:flex-start;}
+  .head .eyebrow{font-family:var(--data); font-size:10pt; letter-spacing:.16em; color:var(--seal); line-height:1.1;}
+  .head h1{font-family:var(--display); font-weight:600; font-size:20pt; line-height:1.15; letter-spacing:.01em; white-space:nowrap;}
   .head h1 .fl{color:var(--seal);}
-  .head .loc{margin-left:auto; text-align:right; font-size:9.5pt; line-height:1.62; color:var(--slate);}
-  .head .loc b{color:var(--ink); font-size:11pt;}
+  .head .loc{font-size:12pt; line-height:1.25; color:var(--slate); white-space:nowrap;}
+  .head .loc b{color:var(--ink); font-size:12pt;}
 
   .cols{display:grid; grid-template-columns:124mm 5mm 154mm;}
   .colL{grid-column:1; display:grid; grid-template-rows:96mm 4mm 1fr;}
-  .colR{grid-column:3; display:grid; grid-template-rows:32mm 3mm 28mm 3mm 52mm 3mm 1fr;}
+  .colR{grid-column:3; display:grid; grid-template-rows:29mm 2mm 26mm 2mm 62mm 2mm 26mm;}
 
   /* ---- image slots ---- */
   .slot{border:.4mm dashed var(--rule-firm); background:var(--panel); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;}
@@ -61,35 +60,35 @@
   .price .c{padding:2.2mm 3mm; display:flex; flex-direction:column; justify-content:center; gap:1mm; border-right:.3mm solid var(--rule);}
   .price .c:last-child{border-right:none;}
   .price .c.main{background:var(--seal-soft);}
-  .price .lab{font-family:var(--data); font-size:8pt; letter-spacing:.06em; color:var(--slate);}
+  .price .lab{font-family:var(--data); font-size:12pt; letter-spacing:.06em; color:var(--slate);}
   .price .big{font-family:var(--data); font-size:26pt; font-weight:700; line-height:1; font-variant-numeric:tabular-nums; color:var(--seal);}
   .price .big span{font-size:12pt; font-weight:400; color:var(--slate);}
   .price .mid{font-family:var(--data); font-size:20pt; font-weight:700; line-height:1; font-variant-numeric:tabular-nums;}
-  .price .mid em{font-style:normal; font-size:10pt; font-weight:400; color:var(--slate);}
-  .price .sub{font-family:var(--data); font-size:8.5pt; color:var(--slate);}
+  .price .mid em{font-style:normal; font-size:12pt; font-weight:400; color:var(--slate);}
+  .price .sub{font-family:var(--data); font-size:12pt; color:var(--slate);}
 
   /* ---- spec ---- */
   .spec{border:.4mm solid var(--rule-firm); display:grid; grid-template-columns:1fr 1fr;}
   .spec dl{display:grid; grid-template-columns:auto 1fr; gap:0 3mm; padding:2mm 3mm; align-content:center;}
   .spec dl:first-child{border-right:.3mm solid var(--rule);}
-  .spec dt{font-size:9.5pt; color:var(--slate); line-height:1.95; white-space:nowrap;}
-  .spec dd{font-family:var(--data); font-size:10.5pt; text-align:right; font-variant-numeric:tabular-nums; line-height:1.95;}
+  .spec dt{font-size:12pt; color:var(--slate); line-height:1.6; white-space:nowrap;}
+  .spec dd{font-family:var(--data); font-size:13pt; text-align:right; font-variant-numeric:tabular-nums; line-height:1.6;}
   .spec dd em{font-style:normal; color:var(--go); font-weight:700;}
 
   /* ---- rentroll ---- */
   .rr{border:.4mm solid var(--rule-firm); display:flex; flex-direction:column; overflow:hidden;}
-  .rr-cap{font-size:8.5pt; color:var(--slate); padding:1.6mm 3mm; border-bottom:.3mm solid var(--rule); background:var(--panel);}
-  table{border-collapse:collapse; width:100%; font-size:10.5pt; flex:1;}
-  th,td{padding:1.7mm 3mm; text-align:left; border-bottom:.25mm solid var(--rule); line-height:1.35;}
-  thead th{font-size:8.5pt; color:var(--slate); font-weight:700; border-bottom:.4mm solid var(--rule-firm); white-space:nowrap; padding-top:1.2mm; padding-bottom:1.2mm;}
+  .rr-cap{font-size:12pt; color:var(--slate); padding:1.6mm 3mm; border-bottom:.3mm solid var(--rule); background:var(--panel);}
+  table{border-collapse:collapse; width:100%; font-size:12pt; flex:1;}
+  th,td{padding:1.25mm 2mm; text-align:left; border-bottom:.25mm solid var(--rule); line-height:1.35;}
+  thead th{font-size:12pt; color:var(--slate); font-weight:700; border-bottom:.4mm solid var(--rule-firm); white-space:nowrap; padding-top:1.2mm; padding-bottom:1.2mm;}
   td.n,th.n{text-align:right; font-family:var(--data); font-variant-numeric:tabular-nums; white-space:nowrap;}
   tr.tot td{background:var(--panel); font-weight:700; border-top:.4mm solid var(--rule-firm); border-bottom:none;}
 
   /* ---- pitch + disclaimer ---- */
-  .foot{display:flex; flex-direction:column; gap:2mm; justify-content:space-between;}
-  .pitch{border-left:1mm solid var(--seal); padding-left:3mm; font-size:10pt; line-height:1.6;}
+  .foot{display:flex; flex-direction:column; gap:1.4mm; justify-content:space-between;}
+  .pitch{border-left:1mm solid var(--seal); padding-left:3mm; font-size:12pt; line-height:1.6;}
   .pitch b{color:var(--seal);}
-  .dis{font-size:7pt; line-height:1.5; color:var(--slate);}
+  .dis{font-size:5.2pt; line-height:1.45; color:var(--mute);}
 
   /* ---- bottom band (30mm) ---- */
   .band{
@@ -100,14 +99,12 @@
     position:absolute; top:-2.4mm; left:7mm; font-family:var(--data); font-size:7pt;
     letter-spacing:.12em; color:var(--mute); background:var(--paper); padding:0 2mm;
   }
-  .band .blk{display:flex; flex-direction:column; gap:1mm;}
-  .band .lab{font-family:var(--data); font-size:8pt; letter-spacing:.1em; color:var(--slate);}
-  .band .co{font-family:var(--display); font-size:14pt; font-weight:600; line-height:1.2;}
-  .band .ln{font-size:9.5pt; line-height:1.5; color:var(--slate);}
+  .band .blk{display:flex; flex-direction:column; gap:0.6mm;}
+  .band .lab{font-family:var(--data); font-size:12pt; letter-spacing:.1em; color:var(--slate);}
+  .band .co{font-family:var(--display); font-size:15pt; font-weight:600; line-height:1.2;}
+  .band .ln{font-size:12pt; line-height:1.5; color:var(--slate);}
   .band .ln b{color:var(--ink);}
-  .band .ln.mail{font-family:var(--data); font-size:9pt;}
-  .band .right{margin-left:auto; text-align:right;}
-  .band .note{font-size:8pt; color:var(--slate); line-height:1.55; max-width:74mm;}
+  .band .ln.mail{font-family:var(--data); font-size:12pt;}
 
   /* ---- screen scaling ---- */
   @media (max-width:1220px){ .sheet{zoom:.82;} }
@@ -136,16 +133,10 @@
     <div class="main">
 
       <header class="head">
-        <div>
           <div class="eyebrow">収益不動産のご案内　／　フロア一括</div>
           <h1>サンリーノ港北センター北　<span class="fl">1階</span> 店舗一括（4区画）</h1>
-        </div>
-        <div class="loc">
-          <b>横浜市営地下鉄「センター北」駅 徒歩5分</b><br>
-          横浜市都筑区中川中央1-39-29 ／ RC造 地上7階建の1階部分<br>
-          1997年築（新耐震基準）・2026年 大規模改修済 ／ 全4区画 賃貸中
-        </div>
-      </header>
+          <div class="loc"><b>「センター北」駅 徒歩5分</b>／都筑区中川中央1-39-29／RC造 地上7階建の1階部分／1997年築（新耐震）・2026年改修済／全4区画賃貸中</div>
+        </header>
 
       <div></div>
 
@@ -232,11 +223,10 @@
 
           <div class="foot">
             <p class="pitch">
-              駅徒歩5分の1階路面4区画。地域密着型の生活サービス業種で構成され、退去時の再募集がしやすい構成です。
-              <b>現行賃料は当社査定水準を約30％下回っており、賃料の是正余地が残されています。</b>
+              駅徒歩5分の1階路面4区画。<b>現行賃料は当社査定水準を約30％下回っており、賃料の是正余地が残されています。</b>
             </p>
             <p class="dis">
-              ※査定賃料は当社査定であり、賃料改定は賃借人との協議によります。想定利回り（NOI）は満室想定の年間賃料（税別）から一定の経費を控除した数値で、将来の収益を保証するものではありません。別途、管理費・修繕積立金・公租公課等が必要です。本物件は一棟の建物の一部（区分所有）です。詳細は別途資料にてご確認ください。
+              ※査定賃料は当社の査定によるもので、実際の賃料改定は賃借人との個別協議によります。想定利回り（NOI）は満室想定の年間賃料（税別）から一定の経費を控除して算出しており、公租公課・管理費・修繕積立金等の実額により変動します。将来の収益を保証するものではありません。表面利回りは経費控除前の数値です。別途、管理費・修繕積立金・公租公課および取得時諸費用が必要です。価格・条件は予告なく変更される場合があり、最終条件は売買契約書によります。本物件は共同住宅を含む一棟の建物の一部（区分所有）です。管理規約上の用途制限、一部共用部分の負担区分等は別途資料にてご確認ください。
             </p>
           </div>
         </div>
@@ -256,13 +246,6 @@
         <span class="ln"><b>担当　中山</b>　TEL 080-3724-6012</span>
         <span class="ln mail">takeshi_nakayama052@sanyohomes.co.jp</span>
       </div>
-      <div class="blk right">
-        <span class="lab">業者様へ</span>
-        <span class="note">
-          本欄に御社情報のラベルを貼付、または裁断のうえお客様へお渡しください。<br>
-          室内のご内覧はテナント営業中のため事前調整（2〜3営業日）が必要です。
-        </span>
-      </div>
     </div>
   </div>
 
@@ -271,16 +254,10 @@
     <div class="main">
 
       <header class="head">
-        <div>
           <div class="eyebrow">収益不動産のご案内　／　フロア一括</div>
           <h1>サンリーノ港北センター北　<span class="fl">2階</span> 事務所一括（4区画）</h1>
-        </div>
-        <div class="loc">
-          <b>横浜市営地下鉄「センター北」駅 徒歩5分</b><br>
-          横浜市都筑区中川中央1-39-29 ／ RC造 地上7階建の2階部分<br>
-          1997年築（新耐震基準）・2026年 大規模改修済 ／ 全4区画 賃貸中
-        </div>
-      </header>
+          <div class="loc"><b>「センター北」駅 徒歩5分</b>／都筑区中川中央1-39-29／RC造 地上7階建の2階部分／1997年築（新耐震）・2026年改修済／全4区画賃貸中</div>
+        </header>
 
       <div></div>
 
@@ -348,12 +325,12 @@
           <div></div>
 
           <div class="rr">
-            <div class="rr-cap">賃貸状況　／　賃料は月額・税込　／　201+202・205+206 は2区画を1区画として賃貸中</div>
+            <div class="rr-cap">賃貸状況　／　賃料は月額・税込（201+202・205+206は2戸一）</div>
             <table>
               <thead><tr><th>号室</th><th>業種</th><th class="n">面積㎡</th><th class="n">現行賃料</th><th class="n">査定賃料</th></tr></thead>
               <tbody>
                 <tr><td>201+202</td><td>学習塾</td><td class="n">132.00</td><td class="n">386,148</td><td class="n">521,400</td></tr>
-                <tr><td>203</td><td>駐車場メンテナンス</td><td class="n">70.95</td><td class="n">235,400</td><td class="n">280,500</td></tr>
+                <tr><td>203</td><td>駐車場メンテ</td><td class="n">70.95</td><td class="n">235,400</td><td class="n">280,500</td></tr>
                 <tr><td>205+206</td><td>児童発達支援教室</td><td class="n">122.80</td><td class="n">328,900</td><td class="n">484,000</td></tr>
                 <tr><td>207</td><td>内科クリニック</td><td class="n">106.31</td><td class="n">339,680</td><td class="n">418,000</td></tr>
                 <tr class="tot"><td colspan="2">合計 4区画</td><td class="n">432.06</td><td class="n">1,290,128</td><td class="n">1,703,900</td></tr>
@@ -365,11 +342,10 @@
 
           <div class="foot">
             <p class="pitch">
-              教育・医療・福祉で3区画。<b>内科クリニック・児童発達支援教室は所在地に紐づく行政の指定を受ける業種のため、賃借人の定着性が高い構成です。</b>
-              現行賃料は当社査定水準を約32％下回っています。
+              教育・医療・福祉で3区画。クリニック・児発は行政の指定を受ける業種で定着性が高く、<b>現行賃料は査定水準を約32％下回っています。</b>
             </p>
             <p class="dis">
-              ※査定賃料は当社査定であり、賃料改定は賃借人との協議によります。想定利回り（NOI）は満室想定の年間賃料（税別）から一定の経費を控除した数値で、将来の収益を保証するものではありません。別途、管理費・修繕積立金・公租公課等が必要です。本物件は一棟の建物の一部（区分所有）です。詳細は別途資料にてご確認ください。
+              ※査定賃料は当社の査定によるもので、実際の賃料改定は賃借人との個別協議によります。想定利回り（NOI）は満室想定の年間賃料（税別）から一定の経費を控除して算出しており、公租公課・管理費・修繕積立金等の実額により変動します。将来の収益を保証するものではありません。表面利回りは経費控除前の数値です。別途、管理費・修繕積立金・公租公課および取得時諸費用が必要です。価格・条件は予告なく変更される場合があり、最終条件は売買契約書によります。本物件は共同住宅を含む一棟の建物の一部（区分所有）です。管理規約上の用途制限、一部共用部分の負担区分等は別途資料にてご確認ください。
             </p>
           </div>
         </div>
@@ -387,13 +363,6 @@
         <span class="lab">本件お問合せ先</span>
         <span class="ln"><b>担当　中山</b>　TEL 080-3724-6012</span>
         <span class="ln mail">takeshi_nakayama052@sanyohomes.co.jp</span>
-      </div>
-      <div class="blk right">
-        <span class="lab">業者様へ</span>
-        <span class="note">
-          本欄に御社情報のラベルを貼付、または裁断のうえお客様へお渡しください。<br>
-          室内のご内覧はテナント営業中のため事前調整（2〜3営業日）が必要です。
-        </span>
       </div>
     </div>
   </div>
